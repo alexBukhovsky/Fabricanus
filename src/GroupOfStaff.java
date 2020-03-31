@@ -15,15 +15,6 @@ public class GroupOfStaff {
         return this.name;
     }
 
-
-    private void editGroup(String name, String description) {
-        if(checkIsUnique(name)) {
-            this.name = name;
-            this.description = description;
-        }
-        else ; //JDialog that group with this name already exist
-    }
-
     private void deleteStaff(String name) {
         for(int i = 0; i < staff.size(); i++) {
             if(staff.get(i).getName().equals(name)) {
@@ -45,5 +36,13 @@ public class GroupOfStaff {
         // if unique then true
         return true;
         //else false
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

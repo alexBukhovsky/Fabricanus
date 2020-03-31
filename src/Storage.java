@@ -28,7 +28,21 @@ public class Storage {
                     return groups.get(i).getStaffCollection().get(j);
             }
         }
-    return null;
+        return null;
+    }
+
+    private void editGroup(String name, String description) {
+        if(!name.equals(tmp.getName())) {
+            if (checkIsGroupUnique(name)) {
+                tmp.setName(name);
+                tmp.setDescription(description);
+            }
+            else ;
+            //JDialog that group with this name already exist
+        }
+        else tmp.setDescription(description);
+
+
     }
 
     private boolean checkIsStaffUnique(String name) {
