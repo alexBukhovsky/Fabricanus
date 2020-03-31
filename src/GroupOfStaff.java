@@ -37,6 +37,10 @@ public class GroupOfStaff {
         staff.add(new Staff(name,description,producer, count, price));
     }
 
+    public ArrayList<Staff> getStaffCollection() {
+        return this.staff;
+    }
+
     private boolean checkIsUnique(String name) {
         // if unique then true
         return true;

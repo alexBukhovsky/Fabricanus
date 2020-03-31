@@ -1,18 +1,31 @@
 import java.util.ArrayList;
 
 public class Storage {
-    private ArrayList<GroupOfStaff> groups = new ArrayList<>();
 
-    private GroupOfStaff tmp =null;
-
-    public void addStaff(String name, String description, String producer, int count, int price){
-
-        if (tmp!=null){
-            tmp.addStaffToGroup(name,description,producer, count, price);
-        }
-
+    Storage () {
+        groups = new ArrayList<>();
+        tmp = null;
     }
 
+    private ArrayList<GroupOfStaff> groups;
+    private GroupOfStaff tmp;
+
+    public void addStaff(String name, String description, String producer, int count, int price){
+        checkIsStaffUnique(name);
+        if (tmp != null) {
+            tmp.addStaffToGroup(name, description, producer, count, price);
+        }
+    }
+
+    private boolean checkIsStaffUnique(String name) {
+        for(int i = 0; i < groups.size(); i++){
+            for(int j = 0; j < groups.get(i).getStaffCollection().size(); j++){
+                if (groups.get(i).getStaffCollection().get(i).getName().equals(name))
+                    return false;
+            }
+        }
+        return true;
+    }
 
 
     private void deleteGroup(String name) {
