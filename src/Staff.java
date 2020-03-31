@@ -1,8 +1,8 @@
 public class Staff {
     private int count;
     private int price;
+    private String name;
 
-    String name;
     public String getName(){
         return this.name;
     }
