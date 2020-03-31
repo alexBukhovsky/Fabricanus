@@ -20,6 +20,17 @@ public class Storage {
     public void addGroup(String name, String description){
       if (checkIsGroupUnique(name))groups.add(new GroupOfStaff(name, description));
     }
+
+    private Staff SearchStaffByName(String name) {
+        for(int i = 0; i < groups.size(); i++){
+            for(int j = 0; j < groups.get(i).getStaffCollection().size(); j++){
+                if (groups.get(i).getStaffCollection().get(i).getName().equals(name))
+                    return groups.get(i).getStaffCollection().get(i);
+            }
+        }
+    return null;
+    }
+
     private boolean checkIsStaffUnique(String name) {
         for(int i = 0; i < groups.size(); i++){
             for(int j = 0; j < groups.get(i).getStaffCollection().size(); j++){
