@@ -6,13 +6,13 @@ public class Staff {
     public String getName(){
         return this.name;
     }
-    public String getPrice(){
+    public int getPrice(){
         return this.price;
     }
 
-    public String getCount(){
+    public int getCount(){
         return this.count;
     }
 }
 
-}
+
