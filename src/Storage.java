@@ -17,6 +17,9 @@ public class Storage {
         }
     }
 
+    public void addGroup(String name, String description){
+      if (checkIsGroupUnique(name))groups.add(new GroupOfStaff(name, description));
+    }
     private boolean checkIsStaffUnique(String name) {
         for(int i = 0; i < groups.size(); i++){
             for(int j = 0; j < groups.get(i).getStaffCollection().size(); j++){
@@ -27,6 +30,12 @@ public class Storage {
         return true;
     }
 
+    private boolean checkIsGroupUnique(String name) {
+    for (int i = 0; i < groups.size(); i++){
+        if (groups.get(i).getName().equals(name))return false;
+    }
+        return true;
+    }
 
     private void deleteGroup(String name) {
         for(int i = 0; i < groups.size(); i++) {
