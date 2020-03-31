@@ -1,11 +1,29 @@
 public class Staff {
-    private int count;
-    private int price;
+
     private String name;
+    private String description;
+    private String producer;
+    private int count = 0;
+    private int price;
+
+    Staff(String name, String description, String producer, int count, int price){
+
+        this.name = name;
+
+        this.description = description;
+
+        this.producer = producer;
+
+        this.count = count;
+
+        this.price = price;
+
+    }
 
     public String getName(){
         return this.name;
     }
+
     public int getPrice(){
         return this.price;
     }
@@ -13,6 +31,7 @@ public class Staff {
     public int getCount(){
         return this.count;
     }
+
 }
 
 
