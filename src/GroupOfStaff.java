@@ -33,6 +33,10 @@ public class GroupOfStaff {
         }
     }
 
+    public void addStaffToGroup(String name, String description, String producer, int count, int price){
+        staff.add(new Staff(name,description,producer, count, price));
+    }
+
     private boolean checkIsUnique(String name) {
         // if unique then true
         return true;
