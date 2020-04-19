@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 public class test extends JFrame{
     private static test view;
@@ -58,10 +59,11 @@ public class test extends JFrame{
     private static void setStartView() {
         panelStart = new JPanel(new GridLayout(1,2));
         buttonsStart = new JPanel(new FlowLayout(FlowLayout.CENTER,100,15));
-        buttonChoose = new MyJButton("CHOOSE");
+        buttonsStart.setBorder(new EmptyBorder(150, 10, 10, 10));
+        buttonChoose = new MyJButton("CHOOSE","Menu");
         buttonChoose.setBorder(null);
-        buttonOpen = new MyJButton("OPEN");
-        buttonSave = new MyJButton("SAVE");
+        buttonOpen = new MyJButton("OPEN","Menu");
+        buttonSave = new MyJButton("SAVE","Menu");
         buttonsStart.add(buttonChoose);
         buttonsStart.add(buttonOpen);
         buttonsStart.add(buttonSave);

@@ -1,13 +1,14 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class MyJButton extends JButton {
-    public MyJButton(String g) {
-        super(g);
-        this.setPreferredSize(new Dimension(400, 100));
+    public MyJButton(String text, String type) {
+        super(text);
         this.setBorderPainted(false);
         this.setBackground(Color.BLACK);
-        this.setFont(new Font("Old English Text MT", Font.PLAIN, 28));
+        if (type.equals("Menu")) {
+            this.setFont(new Font("Old English Text M", Font.PLAIN, 28));
+            this.setPreferredSize(new Dimension(400, 100));
+        }
     }
 }
