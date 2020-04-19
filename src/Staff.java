@@ -14,6 +14,12 @@ public class Staff {
         this.price = price;
     }
 
+    @Override
+    public String toString(){
+        return name;
+    }
+
+
     public String getName(){
         return this.name;
     }
