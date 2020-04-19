@@ -9,7 +9,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class test extends JFrame{
-    private static ArrayList<Staff> g2;
 
     private static test view;
 
@@ -41,11 +40,18 @@ public class test extends JFrame{
                 private static MyJButton addGroups;
                 private static MyJButton editGroups;
                 private static MyJButton deleteGroups;
+                private static JList<GroupOfStaff> groupsList;
+                private static JScrollPane s;
+                private static JList<GroupOfStaff> finalGroupsList;
 
             private static JPanel panelGoods;
                 private static MyJButton addGood;
                 private static MyJButton editGood;
                 private static MyJButton deleteGood;
+                private static JList<Staff> goodsList;
+                private static JScrollPane s2;
+                private static JList<GroupOfStaff> finalGoodsList;
+                private static GroupOfStaff groupOfStaff;
 
             private static JPanel rightSection;
                 private static JPanel screen;
@@ -97,68 +103,15 @@ public class test extends JFrame{
                 panelGroups.setBackground(Color.LIGHT_GRAY);
                 panelGroups.setPreferredSize(new Dimension(460,500));
                 panelGroups.setBorder(new EmptyBorder(0, 0, 0, 0));
-
-                    ArrayList<GroupOfStaff> g = new ArrayList<GroupOfStaff>();
-                    g.add(new GroupOfStaff("Group1","no description,  means "));
-                    g.add(new GroupOfStaff("Group2","no description,  means "));
-                    g.add(new GroupOfStaff("Group3","no description,  means "));
-
-                    JList<GroupOfStaff> groupsList = new JList<GroupOfStaff>(g.toArray(new GroupOfStaff[g.size()]));
-                    groupsList.setBackground(Color.GRAY);
-                    groupsList.setFont(new Font("Arial", Font.PLAIN, 18));
-                    groupsList.setPreferredSize(new Dimension(420,0));
-                    JScrollPane s = new JScrollPane(groupsList);
-
-                    s.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-                    s.setPreferredSize(new Dimension(450,440));
-                panelGroups.add(s);
-                    addGroups = new MyJButton("ADD","UnderJList");
-                panelGroups.add(addGroups);
-                    editGroups = new MyJButton("EDIT","UnderJList");
-                panelGroups.add(editGroups);
-                    deleteGroups = new MyJButton("DELETE","UnderJList");
-                panelGroups.add(deleteGroups);
-
-       groupsList.addListSelectionListener (new ListSelectionListener() {
-
-           @Override
-                public void valueChanged (ListSelectionEvent evt) {
-               tmpGroup = groupsList.getSelectedValue();
-               addGroups.setEnabled(true);
-               editGroups.setEnabled(true);
-               deleteGroups.setEnabled(true);
-
-                }
-       }
-       );
-
+                initGroupSection();
 
 
                 panelGoods = new JPanel(new FlowLayout());
                 panelGoods.setBackground(Color.LIGHT_GRAY);
                 panelGoods.setPreferredSize(new Dimension(460,500));
                 panelGoods.setBorder(new EmptyBorder(0, 0, 0, 0));
+                initGoodsSection(groupOfStaff);
 
-                g2 = new ArrayList<Staff>();
-                g2.add(new Staff("Staff1","no description,  means ","",56,56));
-                g2.add(new Staff("Staff2","no description,  means ","",56,56));
-                g2.add(new Staff("Staff3","no description,  means ","",56,56));
-
-                JList<Staff> goodsList = new JList<Staff>(g2.toArray(new Staff[g2.size()]));
-                goodsList.setBackground(Color.GRAY);
-                goodsList.setFont(new Font("Arial", Font.PLAIN, 18));
-                goodsList.setPreferredSize(new Dimension(420,0));
-                JScrollPane s2 = new JScrollPane(goodsList);
-
-                s2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-                s2.setPreferredSize(new Dimension(450,440));
-                panelGoods.add(s2);
-                addGood = new MyJButton("ADD","UnderJList");
-                panelGoods.add(addGood);
-                editGood = new MyJButton("EDIT","UnderJList");
-                panelGoods.add(editGood);
-                deleteGood = new MyJButton("DELETE","UnderJList");
-                panelGoods.add(deleteGood);
 
                 rightSection = new JPanel(new FlowLayout());
                 rightSection.setBackground(Color.LIGHT_GRAY);
@@ -172,27 +125,6 @@ public class test extends JFrame{
                     countMinus = new MyJButton("TAKE OFF THIS STAFF","takeOffStaff");
                 rightSection.add(countMinus);
 
-        goodsList.addListSelectionListener (new ListSelectionListener() {
-
-            @Override
-            public void valueChanged (ListSelectionEvent evt) {
-                screen.removeAll();
-                tmpStaff = goodsList.getSelectedValue();
-                addGood.setEnabled(true);
-                editGood.setEnabled(true);
-                deleteGood.setEnabled(true);
-                countPlus.setEnabled(true);
-                countMinus.setEnabled(true);
-                JLabel infoAboutName = new JLabel("Name: "+tmpStaff.getName());
-                JLabel infoAboutDes = new JLabel("Description: "+tmpStaff.getDescription());
-                JLabel infoAboutProdu = new JLabel("Producer: "+tmpStaff.getProducer());
-                screen.add(infoAboutName);
-                screen.add(infoAboutDes);
-                screen.add(infoAboutProdu);
-                screen.updateUI();
-            }
-        }
-        );
 
             workSection.add(panelGroups);
             workSection.add(panelGoods);
@@ -217,6 +149,135 @@ public class test extends JFrame{
                 setStartView();
             }
         });
+
+    }
+    private static void initGoodsSection(GroupOfStaff groupOfStaff) {
+        goodsList = new JList<Staff>();
+        try {
+            JList<Staff> goodsList = new JList<Staff>(groupOfStaff.staff.toArray(new Staff[groupOfStaff.staff.size()]));
+        }
+        catch (NullPointerException e) {
+            //e.printStackTrace();
+        }
+        goodsList.setBackground(Color.GRAY);
+        goodsList.setFont(new Font("Arial", Font.PLAIN, 18));
+        goodsList.setPreferredSize(new Dimension(420,0));
+        s2 = new JScrollPane(goodsList);
+
+        s2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        s2.setPreferredSize(new Dimension(450,440));
+        panelGoods.add(s2);
+        addGood = new MyJButton("ADD","UnderJList");
+        panelGoods.add(addGood);
+        editGood = new MyJButton("EDIT","UnderJList");
+        panelGoods.add(editGood);
+        deleteGood = new MyJButton("DELETE","UnderJList");
+        panelGoods.add(deleteGood);
+        goodsList.addListSelectionListener (new ListSelectionListener() {
+                                                @Override
+                                                public void valueChanged (ListSelectionEvent evt) {
+                                                    screen.removeAll();
+                                                    tmpStaff = goodsList.getSelectedValue();
+                                                    addGood.setEnabled(true);
+                                                    editGood.setEnabled(true);
+                                                    deleteGood.setEnabled(true);
+                                                    countPlus.setEnabled(true);
+                                                    countMinus.setEnabled(true);
+                                                    JLabel infoAboutName = new JLabel("Name: "+tmpStaff.getName());
+                                                    JLabel infoAboutDes = new JLabel("Description: "+tmpStaff.getDescription());
+                                                    JLabel infoAboutProdu = new JLabel("Producer: "+tmpStaff.getProducer());
+                                                    screen.add(infoAboutName);
+                                                    screen.add(infoAboutDes);
+                                                    screen.add(infoAboutProdu);
+                                                    screen.updateUI();
+                                                }
+                                            }
+        );
+        addGood.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                panelGoods.removeAll();
+                groupOfStaff.staff.add(new Staff("Huinya","nya","drochnya",69,228));
+                try {
+                    goodsList = new JList<Staff>(  groupOfStaff.staff.toArray(new Staff[  groupOfStaff.staff.size()]));
+                }
+                catch (NullPointerException e) {
+                    //e.printStackTrace();
+                }
+                initGoodsSection(groupOfStaff);
+                panelGoods.updateUI();
+
+            }
+        });
+    }
+    private static void initGroupSection() {
+        groupsList = new JList<GroupOfStaff>();
+        try {
+            groupsList = new JList<GroupOfStaff>(Storage.groups.toArray(new GroupOfStaff[Storage.groups.size()]));
+        }
+        catch (NullPointerException e) {
+            //e.printStackTrace();
+        }
+        groupsList.setBackground(Color.GRAY);
+        groupsList.setFont(new Font("Arial", Font.PLAIN, 18));
+        groupsList.setPreferredSize(new Dimension(420,Storage.groups.size()*26));
+        s = new JScrollPane(groupsList);
+        s.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        s.setPreferredSize(new Dimension(450,440));
+        panelGroups.add(s);
+        addGroups = new MyJButton("ADD","UnderJList");
+        addGroups.setEnabled(true);
+        panelGroups.add(addGroups);
+        editGroups = new MyJButton("EDIT","UnderJList");
+        panelGroups.add(editGroups);
+        deleteGroups = new MyJButton("DELETE","UnderJList");
+        panelGroups.add(deleteGroups);
+
+        finalGroupsList = groupsList;
+        addGroups.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                panelGroups.removeAll();
+                Storage.groups.add(new GroupOfStaff("Huinya","nya"));
+                try {
+                    groupsList = new JList<GroupOfStaff>(Storage.groups.toArray(new GroupOfStaff[Storage.groups.size()]));
+                }
+                catch (NullPointerException e) {
+                    //e.printStackTrace();
+                }
+                initGroupSection();
+                panelGroups.updateUI();
+
+            }
+        });
+        deleteGroups.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                panelGroups.removeAll();
+                Storage.groups.remove(groupsList.getSelectedValue());
+                try {
+                    groupsList = new JList<GroupOfStaff>(Storage.groups.toArray(new GroupOfStaff[Storage.groups.size()]));
+                }
+                catch (NullPointerException e) {
+                    //e.printStackTrace();
+                }
+                initGroupSection();
+                panelGroups.updateUI();
+
+            }
+        });
+        groupsList.addListSelectionListener (new ListSelectionListener() {
+              @Override
+              public void valueChanged(ListSelectionEvent evt) {
+              tmpGroup = finalGroupsList.getSelectedValue();
+              //addGroups.setEnabled(true);
+              editGroups.setEnabled(true);
+              deleteGroups.setEnabled(true);
+              addGood.setEnabled(true);
+              groupOfStaff = tmpGroup;
+              }
+         }
+        );
     }
 
     private static void setStartView() {

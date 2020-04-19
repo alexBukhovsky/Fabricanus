@@ -7,8 +7,8 @@ public class Storage {
         tmp = null;
     }
 
-    ArrayList<GroupOfStaff> groups;
-    GroupOfStaff tmp;
+    static ArrayList<GroupOfStaff> groups = new ArrayList<GroupOfStaff>();
+    static GroupOfStaff tmp;
 
     public void addStaff(String name, String description, String producer, int count, int price){
         checkIsStaffUnique(name);
