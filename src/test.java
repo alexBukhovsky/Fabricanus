@@ -1,12 +1,15 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 public class test extends JFrame{
     private static test view;
+
+    File File = null;
 
     private static JPanel panelStart;
 
@@ -31,13 +34,34 @@ public class test extends JFrame{
         this.setIconImage(icon.getImage());
 
 
-       /* button.addActionListener(new ActionListener() {
+        buttonOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
 
             }
-        });*/
+        });
+
+        buttonChoose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+                JFileChooser fileChooser = new JFileChooser();
+                int returnValue =  fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    File File = fileChooser.getSelectedFile();
+
+                }
+            }
+        });
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+
+            }
+        });
 
     }
 
@@ -81,6 +105,7 @@ public class test extends JFrame{
         panelStart.add(imageStart);
 
         view.add(panelStart);
+
     }
 
     private static void createTheme() {
