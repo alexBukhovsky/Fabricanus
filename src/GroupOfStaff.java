@@ -23,6 +23,11 @@ public class GroupOfStaff {
         }
     }
 
+    @Override
+    public String toString(){
+        return name;
+    }
+
     public void addStaffToGroup(String name, String description, String producer, int count, int price){
         staff.add(new Staff(name,description,producer, count, price));
     }
