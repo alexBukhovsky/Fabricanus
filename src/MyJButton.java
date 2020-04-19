@@ -12,9 +12,13 @@ public class MyJButton extends JButton {
             this.setPreferredSize(new Dimension(400, 100));
         }
 
-        if(type.equals("Search")) {
+        else if(type.equals("Search")) {
             this.setFont(new Font("Arial", Font.PLAIN, 18));
             this.setPreferredSize(new Dimension(150, 60));
+        }
+        else if(type.equals("UnderJList")) {
+            this.setFont(new Font("Arial", Font.PLAIN, 18));
+            this.setPreferredSize(new Dimension(147, 40));
         }
     }
 }

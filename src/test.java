@@ -4,13 +4,15 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 public class test extends JFrame{
     private static test view;
 
     private static File file = null;
+
+    private static GroupOfStaff tmpGroup;
+    private static Staff tmpStaff;
 
     private static JPanel panelStart;
 
@@ -31,10 +33,19 @@ public class test extends JFrame{
 
         private static JPanel workSection;
             private static JPanel panelGroups;
+                private static MyJButton addGroups;
+                private static MyJButton editGroups;
+                private static MyJButton deleteGroups;
 
             private static JPanel panelGoods;
+                private static MyJButton addGood;
+                private static MyJButton editGood;
+                private static MyJButton deleteGood;
 
             private static JPanel rightSection;
+                private static JPanel screen;
+                private static MyJButton countPlus;
+                private static MyJButton countMinus;
 
         private static JPanel toMenu;
             private static JButton goToMenu;
@@ -89,19 +100,54 @@ public class test extends JFrame{
 
                     JList<GroupOfStaff> groupsList = new JList<GroupOfStaff>(g.toArray(new GroupOfStaff[g.size()]));
                     groupsList.setBackground(Color.GRAY);
-                    groupsList.setPreferredSize(new Dimension(450,0));
+                    groupsList.setFont(new Font("Arial", Font.PLAIN, 18));
+                    groupsList.setPreferredSize(new Dimension(420,0));
                     JScrollPane s = new JScrollPane(groupsList);
+
                     s.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
                     s.setPreferredSize(new Dimension(450,440));
-        panelGroups.add(s);
+                panelGroups.add(s);
+                    addGroups = new MyJButton("ADD","UnderJList");
+                panelGroups.add(addGroups);
+                    editGroups = new MyJButton("EDIT","UnderJList");
+                panelGroups.add(editGroups);
+                    deleteGroups = new MyJButton("DELETE","UnderJList");
+                panelGroups.add(deleteGroups);
+
+
 
                 panelGoods = new JPanel(new FlowLayout());
                 panelGoods.setBackground(Color.LIGHT_GRAY);
                 panelGoods.setPreferredSize(new Dimension(460,500));
+                panelGoods.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+                ArrayList<Staff> g2 = new ArrayList<Staff>();
+                g2.add(new Staff("Zalupa","no description, zalupa means zalupa","",56,56));
+                g2.add(new Staff("Zalup2a2","no description, zalupa means zalupa","",56,56));
+                g2.add(new Staff("Zalupa3","no description, zalupa means zalupa","",56,56));
+
+                JList<Staff> goodsList = new JList<Staff>(g2.toArray(new Staff[g2.size()]));
+                goodsList.setBackground(Color.GRAY);
+                goodsList.setFont(new Font("Arial", Font.PLAIN, 18));
+                goodsList.setPreferredSize(new Dimension(420,0));
+                JScrollPane s2 = new JScrollPane(goodsList);
+
+                s2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                s2.setPreferredSize(new Dimension(450,440));
+                panelGoods.add(s2);
+                addGood = new MyJButton("ADD","UnderJList");
+                panelGoods.add(addGood);
+                editGood = new MyJButton("EDIT","UnderJList");
+                panelGoods.add(editGood);
+                deleteGood = new MyJButton("DELETE","UnderJList");
+                panelGoods.add(deleteGood);
 
                 rightSection = new JPanel(new FlowLayout());
                 rightSection.setBackground(Color.LIGHT_GRAY);
                 rightSection.setPreferredSize(new Dimension(300,500));
+                screen =
+
+
             workSection.add(panelGroups);
             workSection.add(panelGoods);
             workSection.add(rightSection);
