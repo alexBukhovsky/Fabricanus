@@ -8,6 +8,6 @@ public class MyJButton extends JButton {
         this.setPreferredSize(new Dimension(400, 100));
         this.setBorderPainted(false);
         this.setBackground(Color.BLACK);
-        this.setFont(new Font("Arial", Font.PLAIN, 28));
+        this.setFont(new Font("Old English Text MT", Font.PLAIN, 28));
     }
 }

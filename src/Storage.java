@@ -41,8 +41,6 @@ public class Storage {
             //JDialog that group with this name already exist
         }
         else tmp.setDescription(description);
-
-
     }
 
     private boolean checkIsStaffUnique(String name) {
