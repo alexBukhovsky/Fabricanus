@@ -22,6 +22,14 @@ public class test extends JFrame{
             private static JLabel imageDD;
 
 
+    private static JPanel panelWork;
+        private static JPanel search;
+
+        private static JPanel workSection;
+
+        private static JPanel toMenu;
+
+
 
 
 
