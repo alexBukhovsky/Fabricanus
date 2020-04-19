@@ -160,6 +160,11 @@ public class test extends JFrame{
             workSection.add(rightSection);
         panelWork.add(workSection);
 
+            toMenu = new JPanel(new FlowLayout(FlowLayout.RIGHT,100,15));
+                goToMenu = new MyJButton("toMENU","toMenu");
+                toMenu.add(goToMenu);
+        panelWork.add(toMenu);
+
 
 
         view.add(panelWork);

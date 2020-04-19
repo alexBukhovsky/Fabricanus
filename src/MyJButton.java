@@ -33,5 +33,10 @@ public class MyJButton extends JButton {
             this.setPreferredSize(new Dimension(290, 75));
             this.setEnabled(false);
         }
+        else if (type.equals("toMenu")) {
+            this.setBackground( new Color(209, 147, 0) );
+            this.setFont(new Font("Arial", Font.PLAIN, 18));
+            this.setPreferredSize(new Dimension(150, 60));
+        }
     }
 }
