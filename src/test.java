@@ -172,12 +172,16 @@ public class test extends JFrame{
 
             @Override
             public void valueChanged (ListSelectionEvent evt) {
-                tmpGroup = groupsList.getSelectedValue();
+                screen.removeAll();
+                tmpStaff = goodsList.getSelectedValue();
                 addGood.setEnabled(true);
                 editGood.setEnabled(true);
                 deleteGood.setEnabled(true);
                 countPlus.setEnabled(true);
                 countMinus.setEnabled(true);
+                JLabel info = new JLabel(tmpStaff.info());
+                screen.add(info);
+                screen.updateUI();
             }
         }
         );
