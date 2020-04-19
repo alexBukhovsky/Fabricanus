@@ -147,7 +147,12 @@ public class test extends JFrame{
                 rightSection.setPreferredSize(new Dimension(300,500));
                     screen = new JPanel(new FlowLayout());
                     screen.setBackground(Color.DARK_GRAY);
-                    screen.setPreferredSize(new Dimension(300,300));
+                    screen.setPreferredSize(new Dimension(290,325));
+                rightSection.add(screen);
+                    countPlus = new MyJButton("ADD THIS STAFF","addStaff");
+                rightSection.add(countPlus);
+                    countMinus = new MyJButton("TAKE OFF THIS STAFF","takeOffStaff");
+                rightSection.add(countMinus);
 
 
             workSection.add(panelGroups);
