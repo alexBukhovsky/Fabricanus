@@ -69,6 +69,7 @@ public class test extends JFrame{
         buttonSave = new MyJButton("SAVE","Menu");
         buttonsStart.add(buttonNew);
         buttonsStart.add(buttonChoose);
+
         buttonsStart.add(buttonOpen);
         buttonsStart.add(buttonSave);
         buttonsStart.setAlignmentY(SwingConstants.CENTER);
