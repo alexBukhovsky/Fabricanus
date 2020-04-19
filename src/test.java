@@ -9,6 +9,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class test extends JFrame{
+    private static ArrayList<Staff> g2;
+
     private static test view;
 
     private static File file = null;
@@ -124,6 +126,7 @@ public class test extends JFrame{
                addGroups.setEnabled(true);
                editGroups.setEnabled(true);
                deleteGroups.setEnabled(true);
+
                 }
        }
        );
@@ -135,7 +138,7 @@ public class test extends JFrame{
                 panelGoods.setPreferredSize(new Dimension(460,500));
                 panelGoods.setBorder(new EmptyBorder(0, 0, 0, 0));
 
-                ArrayList<Staff> g2 = new ArrayList<Staff>();
+                g2 = new ArrayList<Staff>();
                 g2.add(new Staff("Staff1","no description,  means ","",56,56));
                 g2.add(new Staff("Staff2","no description,  means ","",56,56));
                 g2.add(new Staff("Staff3","no description,  means ","",56,56));
@@ -179,8 +182,12 @@ public class test extends JFrame{
                 deleteGood.setEnabled(true);
                 countPlus.setEnabled(true);
                 countMinus.setEnabled(true);
-                JLabel info = new JLabel(tmpStaff.info());
-                screen.add(info);
+                JLabel infoAboutName = new JLabel("Name: "+tmpStaff.getName());
+                JLabel infoAboutDes = new JLabel("Description: "+tmpStaff.getDescription());
+                JLabel infoAboutProdu = new JLabel("Producer: "+tmpStaff.getProducer());
+                screen.add(infoAboutName);
+                screen.add(infoAboutDes);
+                screen.add(infoAboutProdu);
                 screen.updateUI();
             }
         }
@@ -216,7 +223,7 @@ public class test extends JFrame{
                 buttonsStart.add(buttonSave);
                 buttonsStart.setAlignmentY(SwingConstants.CENTER);
                 buttonsStart.setAlignmentX(SwingConstants.CENTER);
-        panelStart.add(buttonsStart);
+                panelStart.add(buttonsStart);
 
             imageStart = new JPanel(new FlowLayout());
                 ImageIcon dD = new ImageIcon("DD.jpg");

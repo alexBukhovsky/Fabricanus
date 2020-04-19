@@ -19,12 +19,16 @@ public class Staff {
         return name;
     }
 
-    public String info(){
-        return "Name: "+ this.name + "\n" + "Description: " + this.description + "\n" + "Producer: " + this.producer + "\n";
-    }
-
     public String getName(){
         return this.name;
+    }
+
+    public String getDescription(){
+        return this.description;
+    }
+
+    public String getProducer(){
+        return this.producer;
     }
 
     public int getPrice(){
