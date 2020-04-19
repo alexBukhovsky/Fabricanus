@@ -44,6 +44,7 @@ public class test extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setLayout(new GridLayout(1,1));
         this.setSize(1280, 720);
+        this.setResizable(false);
         ImageIcon icon = new ImageIcon("mj.jpg");
         this.setIconImage(icon.getImage());
 
@@ -64,7 +65,7 @@ public class test extends JFrame{
 
             search = new JPanel(new FlowLayout());
                 searchField = new JTextField();
-                searchField.setPreferredSize(new Dimension(1000,60));
+                searchField.setPreferredSize(new Dimension(1100,60));
                 searchField.setFont(new Font("Arial", Font.PLAIN, 18));
                 searchButton = new MyJButton("SEARCH","Search");
             panelWork.add(searchField);
