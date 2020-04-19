@@ -25,13 +25,18 @@ public class test extends JFrame{
 
     private static JPanel panelWork;
         private static JPanel search;
+            private static JTextField searchField;
+            private static MyJButton searchButton;
 
         private static JPanel workSection;
+            private static JPanel panelGroups;
+
+            private static JPanel panelGoods;
+
+            private static JPanel rightSection;
 
         private static JPanel toMenu;
-
-
-
+            private static JButton goToMenu;
 
 
     public test() {
@@ -44,49 +49,58 @@ public class test extends JFrame{
 
     }
 
-
-
-
-
-
-
     public static void main(String[] args) {
       createTheme();
 
         view = new test();
 
-        setStartView();
+        //setStartView();
+        setWorkView();
         view.setVisible(true);
+    }
+
+    private static void setWorkView() {
+        panelWork = new JPanel(new FlowLayout());
+
+            search = new JPanel(new FlowLayout());
+                searchField = new JTextField();
+                searchField.setPreferredSize(new Dimension(1000,60));
+                searchField.setFont(new Font("Arial", Font.PLAIN, 18));
+                searchButton = new MyJButton("SEARCH","Search");
+            panelWork.add(searchField);
+            panelWork.add(searchButton);
+
+
+
+        view.add(panelWork);
     }
 
     private static void setStartView() {
         panelStart = new JPanel(new GridLayout(1,2));
-        buttonsStart = new JPanel(new FlowLayout(FlowLayout.CENTER,100,15));
-        buttonsStart.setBorder(new EmptyBorder(100, 10, 10, 10));
-        buttonNew = new MyJButton("NEW STORAGE","Menu");
-        buttonChoose = new MyJButton("CHOOSE","Menu");
-        buttonOpen = new MyJButton("OPEN","Menu");
-        buttonSave = new MyJButton("SAVE","Menu");
-        buttonsStart.add(buttonNew);
-        buttonsStart.add(buttonChoose);
 
-        buttonsStart.add(buttonOpen);
-        buttonsStart.add(buttonSave);
-        buttonsStart.setAlignmentY(SwingConstants.CENTER);
-        buttonsStart.setAlignmentX(SwingConstants.CENTER);
-
-        imageStart = new JPanel(new FlowLayout());
-        ImageIcon dD = new ImageIcon("DD.jpg");
-        JLabel dd = new JLabel();
-        dd.setIcon(dD);
-        imageStart.add(dd);
-        imageStart.setVisible(true);
-
+            buttonsStart = new JPanel(new FlowLayout(FlowLayout.CENTER,100,15));
+            buttonsStart.setBorder(new EmptyBorder(100, 10, 10, 10));
+                buttonNew = new MyJButton("NEW STORAGE","Menu");
+                buttonChoose = new MyJButton("CHOOSE","Menu");
+                buttonOpen = new MyJButton("OPEN","Menu");
+                buttonSave = new MyJButton("SAVE","Menu");
+                buttonsStart.add(buttonNew);
+                buttonsStart.add(buttonChoose);
+                buttonsStart.add(buttonOpen);
+                buttonsStart.add(buttonSave);
+                buttonsStart.setAlignmentY(SwingConstants.CENTER);
+                buttonsStart.setAlignmentX(SwingConstants.CENTER);
         panelStart.add(buttonsStart);
+
+            imageStart = new JPanel(new FlowLayout());
+                ImageIcon dD = new ImageIcon("DD.jpg");
+                JLabel dd = new JLabel();
+                dd.setIcon(dD);
+            imageStart.add(dd);
+            imageStart.setVisible(true);
         panelStart.add(imageStart);
 
         view.add(panelStart);
-
 
 
         buttonOpen.addActionListener(new ActionListener() {
