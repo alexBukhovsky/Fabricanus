@@ -6,7 +6,6 @@ public class GroupOfStaff {
     private ArrayList<Staff> staff = new ArrayList<>();
 
     public GroupOfStaff(String name, String description) {
-        checkIsUnique(name);
         this.name = name;
         this.description = description;
     }
@@ -30,12 +29,6 @@ public class GroupOfStaff {
 
     public ArrayList<Staff> getStaffCollection() {
         return this.staff;
-    }
-
-    private boolean checkIsUnique(String name) {
-        // if unique then true
-        return true;
-        //else false
     }
 
     public void setName(String name) {
