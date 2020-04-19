@@ -145,7 +145,9 @@ public class test extends JFrame{
                 rightSection = new JPanel(new FlowLayout());
                 rightSection.setBackground(Color.LIGHT_GRAY);
                 rightSection.setPreferredSize(new Dimension(300,500));
-                screen =
+                    screen = new JPanel(new FlowLayout());
+                    screen.setBackground(Color.DARK_GRAY);
+                    screen.setPreferredSize(new Dimension(300,300));
 
 
             workSection.add(panelGroups);
