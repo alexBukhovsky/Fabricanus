@@ -25,6 +25,7 @@ public class test extends JFrame{
             private static MyJButton buttonOpen;
             private static MyJButton buttonChoose;
             private static MyJButton buttonSave;
+            private static MyJButton buttonExit;
 
         private static JPanel imageStart;
             private static JLabel imageDD;
@@ -206,21 +207,34 @@ public class test extends JFrame{
 
 
         view.add(panelWork);
+
+        goToMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                panelWork.removeAll();
+                panelWork.setVisible(false);
+                view.remove(panelWork);
+                setStartView();
+            }
+        });
     }
 
     private static void setStartView() {
         panelStart = new JPanel(new GridLayout(1,2));
 
-            buttonsStart = new JPanel(new FlowLayout(FlowLayout.CENTER,100,15));
-            buttonsStart.setBorder(new EmptyBorder(100, 10, 10, 10));
+            buttonsStart = new JPanel(new FlowLayout(FlowLayout.CENTER,50,15));
+            buttonsStart.setBorder(new EmptyBorder(40, 10, 10, 10));
                 buttonNew = new MyJButton("NEW STORAGE","Menu");
                 buttonChoose = new MyJButton("CHOOSE","Menu");
                 buttonOpen = new MyJButton("OPEN","Menu");
                 buttonSave = new MyJButton("SAVE","Menu");
+                buttonExit = new MyJButton("EXIT","Menu");
+                buttonExit.setBackground(new Color(173, 6, 7) );
                 buttonsStart.add(buttonNew);
                 buttonsStart.add(buttonChoose);
                 buttonsStart.add(buttonOpen);
                 buttonsStart.add(buttonSave);
+                buttonsStart.add(buttonExit);
                 buttonsStart.setAlignmentY(SwingConstants.CENTER);
                 buttonsStart.setAlignmentX(SwingConstants.CENTER);
                 panelStart.add(buttonsStart);
@@ -238,8 +252,10 @@ public class test extends JFrame{
         buttonNew.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
-
+                panelStart.removeAll();
+                panelStart.setVisible(false);
+                view.remove(panelStart);
+                setWorkView();
             }
         });
 
@@ -276,6 +292,12 @@ public class test extends JFrame{
             public void actionPerformed(ActionEvent arg0) {
 
 
+            }
+        });
+        buttonExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.exit(0);
             }
         });
 
