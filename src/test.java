@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 public class test extends JFrame{
     private static test view;
 
-    File File = null;
+    private static File file = null;
 
     private static JPanel panelStart;
 
@@ -54,8 +54,8 @@ public class test extends JFrame{
 
         view = new test();
 
-        //setStartView();
-        setWorkView();
+        setStartView();
+        //setWorkView();
         view.setVisible(true);
     }
 
@@ -102,8 +102,7 @@ public class test extends JFrame{
 
         view.add(panelStart);
 
-
-        buttonOpen.addActionListener(new ActionListener() {
+        buttonNew.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
@@ -116,15 +115,30 @@ public class test extends JFrame{
             public void actionPerformed(ActionEvent arg0) {
 
                 JFileChooser fileChooser = new JFileChooser();
-                int returnValue =  fileChooser.showOpenDialog(null);
+                int returnValue = fileChooser.showOpenDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File File = fileChooser.getSelectedFile();
-
+                    try {
+                        file = fileChooser.getSelectedFile();
+                        throw new NotStorageException();
+                    } catch (NotStorageException e) {
+                        e.printStackTrace();
+                        JWindowsDilog er = new JWindowsDilog();
+                        er.setVisible(true);
+                    }
                 }
             }
         });
 
-        buttonSave.addActionListener(new ActionListener() {
+
+        buttonOpen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+
+            }
+        });
+
+                buttonSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
