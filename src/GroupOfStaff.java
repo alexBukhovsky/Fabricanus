@@ -3,11 +3,14 @@ import java.util.ArrayList;
 public class GroupOfStaff {
     private String name;
     private String description;
-    private ArrayList<Staff> staff = new ArrayList<>();
+
+    ArrayList<Staff> staff = new ArrayList<>();
+    Staff tmp;
 
     public GroupOfStaff(String name, String description) {
         this.name = name;
         this.description = description;
+        tmp = null;
     }
 
     public String getName(){
