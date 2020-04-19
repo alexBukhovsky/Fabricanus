@@ -41,36 +41,6 @@ public class test extends JFrame{
         ImageIcon icon = new ImageIcon("mj.jpg");
         this.setIconImage(icon.getImage());
 
-
-        buttonOpen.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-
-
-            }
-        });
-
-        buttonChoose.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-
-                JFileChooser fileChooser = new JFileChooser();
-                int returnValue =  fileChooser.showOpenDialog(null);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File File = fileChooser.getSelectedFile();
-
-                }
-            }
-        });
-
-        buttonSave.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-
-
-            }
-        });
-
     }
 
 
@@ -113,6 +83,38 @@ public class test extends JFrame{
         panelStart.add(imageStart);
 
         view.add(panelStart);
+
+
+
+        buttonOpen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+
+            }
+        });
+
+        buttonChoose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+                JFileChooser fileChooser = new JFileChooser();
+                int returnValue =  fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    File File = fileChooser.getSelectedFile();
+
+                }
+            }
+        });
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+
+            }
+        });
+
 
     }
 
