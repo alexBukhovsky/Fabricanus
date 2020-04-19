@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -55,8 +56,8 @@ public class test extends JFrame{
 
         view = new test();
 
-        setStartView();
-        //setWorkView();
+        //setStartView();
+        setWorkView();
         view.setVisible(true);
     }
 
@@ -65,11 +66,46 @@ public class test extends JFrame{
 
             search = new JPanel(new FlowLayout());
                 searchField = new JTextField();
+                searchField.setCaretColor(Color.GREEN);
+                searchField.setForeground(Color.BLACK);
                 searchField.setPreferredSize(new Dimension(1100,60));
                 searchField.setFont(new Font("Arial", Font.PLAIN, 18));
                 searchButton = new MyJButton("SEARCH","Search");
-            panelWork.add(searchField);
-            panelWork.add(searchButton);
+            search.add(searchField);
+            search.add(searchButton);
+        panelWork.add(search);
+
+
+            workSection = new JPanel(new FlowLayout(FlowLayout.CENTER,15,5));
+                panelGroups = new JPanel(new FlowLayout());
+                panelGroups.setBackground(Color.LIGHT_GRAY);
+                panelGroups.setPreferredSize(new Dimension(460,500));
+                panelGroups.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+                    ArrayList<GroupOfStaff> g = new ArrayList<GroupOfStaff>();
+                    g.add(new GroupOfStaff("Zalupa","no description, zalupa means zalupa"));
+                    g.add(new GroupOfStaff("Zalup2a2","no description, zalupa means zalupa"));
+                    g.add(new GroupOfStaff("Zalupa3","no description, zalupa means zalupa"));
+
+                    JList<GroupOfStaff> groupsList = new JList<GroupOfStaff>(g.toArray(new GroupOfStaff[g.size()]));
+                    groupsList.setBackground(Color.GRAY);
+                    groupsList.setPreferredSize(new Dimension(450,0));
+                    JScrollPane s = new JScrollPane(groupsList);
+                    s.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                    s.setPreferredSize(new Dimension(450,440));
+        panelGroups.add(s);
+
+                panelGoods = new JPanel(new FlowLayout());
+                panelGoods.setBackground(Color.LIGHT_GRAY);
+                panelGoods.setPreferredSize(new Dimension(460,500));
+
+                rightSection = new JPanel(new FlowLayout());
+                rightSection.setBackground(Color.LIGHT_GRAY);
+                rightSection.setPreferredSize(new Dimension(300,500));
+            workSection.add(panelGroups);
+            workSection.add(panelGoods);
+            workSection.add(rightSection);
+        panelWork.add(workSection);
 
 
 
@@ -159,11 +195,11 @@ public class test extends JFrame{
         UIManager.put( "nimbusFocus", new Color(115,164,209) );
         UIManager.put( "nimbusGreen", new Color(176,179,50) );
         UIManager.put( "nimbusInfoBlue", new Color( 66, 139, 221) );
-        UIManager.put( "nimbusLightBackground", new Color( 18, 30, 49) );
+        UIManager.put( "nimbusLightBackground", new Color(248, 255, 237) );
         UIManager.put( "nimbusOrange", new Color(191,98,4) );
         UIManager.put( "nimbusRed", new Color(169,46,34) );
         UIManager.put( "nimbusSelectedText", new Color( 255, 255, 255) );
-        UIManager.put( "nimbusSelectionBackground", new Color(0, 0, 0) );
+        UIManager.put( "nimbusSelectionBackground", new Color(0, 173, 7) );
         UIManager.put( "text", new Color(244, 255, 243) );
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
