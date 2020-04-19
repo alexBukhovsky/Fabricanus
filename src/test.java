@@ -199,6 +199,16 @@ public class test extends JFrame{
 
 
         view.add(panelWork);
+
+        goToMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                panelWork.removeAll();
+                panelWork.setVisible(false);
+                view.remove(panelWork);
+                setStartView();
+            }
+        });
     }
 
     private static void setStartView() {
