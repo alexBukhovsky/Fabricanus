@@ -5,6 +5,8 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class test extends JFrame{
     private static test view;
@@ -114,6 +116,18 @@ public class test extends JFrame{
                     deleteGroups = new MyJButton("DELETE","UnderJList");
                 panelGroups.add(deleteGroups);
 
+       groupsList.addListSelectionListener (new ListSelectionListener() {
+
+           @Override
+                public void valueChanged (ListSelectionEvent evt) {
+               tmpGroup = groupsList.getSelectedValue();
+               addGroups.setEnabled(true);
+               editGroups.setEnabled(true);
+               deleteGroups.setEnabled(true);
+                }
+       }
+       );
+
 
 
                 panelGoods = new JPanel(new FlowLayout());
@@ -154,6 +168,19 @@ public class test extends JFrame{
                     countMinus = new MyJButton("TAKE OFF THIS STAFF","takeOffStaff");
                 rightSection.add(countMinus);
 
+        goodsList.addListSelectionListener (new ListSelectionListener() {
+
+            @Override
+            public void valueChanged (ListSelectionEvent evt) {
+                tmpGroup = groupsList.getSelectedValue();
+                addGood.setEnabled(true);
+                editGood.setEnabled(true);
+                deleteGood.setEnabled(true);
+                countPlus.setEnabled(true);
+                countMinus.setEnabled(true);
+            }
+        }
+        );
 
             workSection.add(panelGroups);
             workSection.add(panelGoods);
