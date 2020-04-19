@@ -123,7 +123,7 @@ public class test extends JFrame{
                         throw new NotStorageException();
                     } catch (NotStorageException e) {
                         e.printStackTrace();
-                        JWindowsDilog er = new JWindowsDilog();
+                        JWindowsDilog er = new JWindowsDilog("NoFile",view,true);
                         er.setVisible(true);
                     }
                 }
