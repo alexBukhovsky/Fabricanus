@@ -96,9 +96,9 @@ public class test extends JFrame{
                 panelGroups.setBorder(new EmptyBorder(0, 0, 0, 0));
 
                     ArrayList<GroupOfStaff> g = new ArrayList<GroupOfStaff>();
-                    g.add(new GroupOfStaff("Zalupa","no description, zalupa means zalupa"));
-                    g.add(new GroupOfStaff("Zalup2a2","no description, zalupa means zalupa"));
-                    g.add(new GroupOfStaff("Zalupa3","no description, zalupa means zalupa"));
+                    g.add(new GroupOfStaff("Group1","no description,  means "));
+                    g.add(new GroupOfStaff("Group2","no description,  means "));
+                    g.add(new GroupOfStaff("Group3","no description,  means "));
 
                     JList<GroupOfStaff> groupsList = new JList<GroupOfStaff>(g.toArray(new GroupOfStaff[g.size()]));
                     groupsList.setBackground(Color.GRAY);
@@ -136,9 +136,9 @@ public class test extends JFrame{
                 panelGoods.setBorder(new EmptyBorder(0, 0, 0, 0));
 
                 ArrayList<Staff> g2 = new ArrayList<Staff>();
-                g2.add(new Staff("Zalupa","no description, zalupa means zalupa","",56,56));
-                g2.add(new Staff("Zalup2a2","no description, zalupa means zalupa","",56,56));
-                g2.add(new Staff("Zalupa3","no description, zalupa means zalupa","",56,56));
+                g2.add(new Staff("Staff1","no description,  means ","",56,56));
+                g2.add(new Staff("Staff2","no description,  means ","",56,56));
+                g2.add(new Staff("Staff3","no description,  means ","",56,56));
 
                 JList<Staff> goodsList = new JList<Staff>(g2.toArray(new Staff[g2.size()]));
                 goodsList.setBackground(Color.GRAY);
