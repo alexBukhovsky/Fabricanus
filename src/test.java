@@ -14,6 +14,7 @@ public class test extends JFrame{
     private static JPanel panelStart;
 
         private static JPanel buttonsStart;
+            private static MyJButton buttonNew;
             private static MyJButton buttonOpen;
             private static MyJButton buttonChoose;
             private static MyJButton buttonSave;
@@ -61,11 +62,12 @@ public class test extends JFrame{
     private static void setStartView() {
         panelStart = new JPanel(new GridLayout(1,2));
         buttonsStart = new JPanel(new FlowLayout(FlowLayout.CENTER,100,15));
-        buttonsStart.setBorder(new EmptyBorder(150, 10, 10, 10));
+        buttonsStart.setBorder(new EmptyBorder(100, 10, 10, 10));
+        buttonNew = new MyJButton("NEW STORAGE","Menu");
         buttonChoose = new MyJButton("CHOOSE","Menu");
-        buttonChoose.setBorder(null);
         buttonOpen = new MyJButton("OPEN","Menu");
         buttonSave = new MyJButton("SAVE","Menu");
+        buttonsStart.add(buttonNew);
         buttonsStart.add(buttonChoose);
         buttonsStart.add(buttonOpen);
         buttonsStart.add(buttonSave);
