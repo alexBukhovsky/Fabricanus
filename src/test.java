@@ -140,16 +140,19 @@ public class test extends JFrame{
                 catch (NullPointerException e) {
                     //e.printStackTrace();
                 }
+                finally {
+                    addGood.setEnabled(false);
+                    editGood.setEnabled(false);
+                    deleteGood.setEnabled(false);
+                    countPlus.setEnabled(false);
+                    countMinus.setEnabled(false);
+                }
             }
         });
         deleteGroups.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                addGood.setEnabled(false);
-                editGood.setEnabled(false);
-                deleteGood.setEnabled(false);
-                countPlus.setEnabled(false);
-                countMinus.setEnabled(false);
+
                 GroupOfStaff locTemp = groupsList.getSelectedValue();
                 try {
                     Storage.groups.remove(locTemp);
@@ -160,6 +163,11 @@ public class test extends JFrame{
                 }
                 finally {
                     groupsList.setModel(modelGroups);
+                    addGood.setEnabled(false);
+                    editGood.setEnabled(false);
+                    deleteGood.setEnabled(false);
+                    countPlus.setEnabled(false);
+                    countMinus.setEnabled(false);
                 }
             }
         });
