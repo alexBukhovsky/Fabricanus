@@ -43,7 +43,7 @@ public class test extends JFrame{
                 private static JList<GroupOfStaff> groupsList;
                 private static JScrollPane s;
                 private static JList<GroupOfStaff> finalGroupsList;
-                private static DefaultListModel modelGroups;
+                private static DefaultListModel  modelGroups = new DefaultListModel();
 
             private static JPanel panelGoods;
                 private static MyJButton addGood;
@@ -105,7 +105,6 @@ public class test extends JFrame{
                 panelGroups.setPreferredSize(new Dimension(460,500));
                 panelGroups.setBorder(new EmptyBorder(0, 0, 0, 0));
         groupsList = new JList<GroupOfStaff>();
-        modelGroups = new DefaultListModel();
         try {
             groupsList = new JList<GroupOfStaff>(Storage.groups.toArray(new GroupOfStaff[Storage.groups.size()]));
         }
@@ -130,22 +129,20 @@ public class test extends JFrame{
         addGroups.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Storage.groups.add(new GroupOfStaff("Huinya","nya"));
-                try {
-                        modelGroups.addElement(new GroupOfStaff("Huinya","nya"));
-                        groupsList.setPreferredSize(new Dimension(420,Storage.groups.size()*26));
-                }
-                catch (NullPointerException e) {
-                    //e.printStackTrace();
-                }
-                finally {
+                GroupOfStaff locTemp = new GroupOfStaff("Huinya","nya");
+                Storage.groups.add(locTemp);
+                modelGroups.addElement(locTemp);
+                    groupsList.setPreferredSize(new Dimension(420,Storage.groups.size()*26));
                     groupsList.setModel(modelGroups);
+
+                    editGroups.setEnabled(false);
+                    deleteGroups.setEnabled(false);
                     addGood.setEnabled(false);
                     editGood.setEnabled(false);
                     deleteGood.setEnabled(false);
                     countPlus.setEnabled(false);
                     countMinus.setEnabled(false);
-                }
+
             }
         });
         deleteGroups.addActionListener(new ActionListener() {
