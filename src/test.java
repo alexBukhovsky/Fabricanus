@@ -98,6 +98,23 @@ public class test extends JFrame{
             search.add(searchButton);
         panelWork.add(search);
 
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+              String searchedGood = searchField.getText();
+              if (searchedGood == null) searchedGood = "Nothing";
+               /*
+               ТУТ тіп должен бутьб пошук НО Я ХУЙ ЗНА КАК РАБОТАТЬ З КЛАСОМ СТОРАГЕ НЕ СТВОРЮЮЧИ ЙОГО ОТАКІ ПИРОГИ =(
+                display.setPreferredSize(new Dimension(270, 310));
+                display.setLineWrap(true);
+                display.setBackground(Color.BLACK);
+                JScrollPane scrolDis = new JScrollPane(display);
+                scrolDis.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                scrolDis.setPreferredSize(new Dimension(270,310));
+                screen.add(scrolDis);
+                */
+            }
+        });
 
             workSection = new JPanel(new FlowLayout(FlowLayout.CENTER,15,5));
                 panelGroups = new JPanel(new FlowLayout());
@@ -232,12 +249,15 @@ public class test extends JFrame{
                                                     countPlus.setEnabled(true);
                                                     countMinus.setEnabled(true);
                                                     if(tmpStaff!=null) {
-                                                        JLabel infoAboutName = new JLabel("Name: " + tmpStaff.getName());
-                                                        JLabel infoAboutDes = new JLabel("Description: " + tmpStaff.getDescription());
-                                                        JLabel infoAboutProdu = new JLabel("Producer: " + tmpStaff.getProducer());
-                                                        screen.add(infoAboutName);
-                                                        screen.add(infoAboutDes);
-                                                        screen.add(infoAboutProdu);
+                                                        //Panel with INFO about good
+                                                        JTextArea display = new JTextArea(tmpStaff.getInfo());
+                                                        display.setPreferredSize(new Dimension(270, 310));
+                                                        display.setLineWrap(true);
+                                                        display.setBackground(Color.BLACK);
+                                                        JScrollPane scrolDis = new JScrollPane(display);
+                                                        scrolDis.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                                                        scrolDis.setPreferredSize(new Dimension(270,310));
+                                                        screen.add(scrolDis);
                                                     }
                                                     screen.updateUI();
                                                 }
@@ -247,9 +267,9 @@ public class test extends JFrame{
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
-                tmpGroup.staff.add(new Staff("Huinya", "nya", "drochnya", 69, 228));
+                tmpGroup.staff.add(new Staff("Huinya", "nya", "drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n  ", 69, 228));
                 try {
-                    modelGoods.addElement(new Staff("Huinya", "nya", "drochnya", 69, 228));
+                    modelGoods.addElement(new Staff("Huinya", "nya", "drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n  ", 69, 228));
                     goodsList.setPreferredSize(new Dimension(420,tmpGroup.staff.size()*26));
 
                 } catch (NullPointerException e) {

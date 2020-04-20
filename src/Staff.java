@@ -39,6 +39,8 @@ public class Staff {
         return this.count;
     }
 
+    public String getInfo(){ return  "Name: " + name + "\n" + "\n" + "Description: " + description + "\n" + "\n"  + "Producer: " + producer + "\n" + "\n" ; }
+
 }
 
 
