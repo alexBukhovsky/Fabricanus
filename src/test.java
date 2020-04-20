@@ -127,7 +127,6 @@ public class test extends JFrame{
         deleteGroups = new MyJButton("DELETE","UnderJList");
         panelGroups.add(deleteGroups);
 
-        finalGroupsList = groupsList;
         addGroups.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -135,12 +134,12 @@ public class test extends JFrame{
                 try {
                         modelGroups.addElement(new GroupOfStaff("Huinya","nya"));
                         groupsList.setPreferredSize(new Dimension(420,Storage.groups.size()*26));
-                        groupsList.setModel(modelGroups);
                 }
                 catch (NullPointerException e) {
                     //e.printStackTrace();
                 }
                 finally {
+                    groupsList.setModel(modelGroups);
                     addGood.setEnabled(false);
                     editGood.setEnabled(false);
                     deleteGood.setEnabled(false);
@@ -168,13 +167,15 @@ public class test extends JFrame{
                     deleteGood.setEnabled(false);
                     countPlus.setEnabled(false);
                     countMinus.setEnabled(false);
+                    editGroups.setEnabled(false);
+                    deleteGroups.setEnabled(false);
                 }
             }
         });
         groupsList.addListSelectionListener (new ListSelectionListener() {
                                                  @Override
                                                  public void valueChanged(ListSelectionEvent evt) {
-                                                     tmpGroup = finalGroupsList.getSelectedValue();
+                                                     tmpGroup = groupsList.getSelectedValue();
                                                      editGroups.setEnabled(true);
                                                      deleteGroups.setEnabled(true);
                                                      addGood.setEnabled(true);
@@ -253,13 +254,16 @@ public class test extends JFrame{
                 try {
                     modelGoods.addElement(new Staff("Huinya", "nya", "drochnya", 69, 228));
                     goodsList.setPreferredSize(new Dimension(420,tmpGroup.staff.size()*26));
+
+                } catch (NullPointerException e) {
+                    //e.printStackTrace();
+                }
+                finally {
                     goodsList.setModel(modelGoods);
                     editGood.setEnabled(false);
                     deleteGood.setEnabled(false);
                     countPlus.setEnabled(false);
                     countMinus.setEnabled(false);
-                } catch (NullPointerException e) {
-                    //e.printStackTrace();
                 }
             }
         });
