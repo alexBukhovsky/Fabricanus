@@ -110,10 +110,12 @@ public class test extends JFrame{
             public void actionPerformed(ActionEvent arg0) {
               String searchedGood = searchField.getText();
                 Staff sr  = Storage.SearchStaffByName(searchedGood);
+                JTextArea display;
                 if (sr==null){
-                    JTextArea display = new JTextArea("Nothing");
+                     display = new JTextArea("Nothing");
                 }
-                JTextArea display = new JTextArea(sr.getInfo());
+                else
+                    display = new JTextArea(sr.getInfo());
                 display.setPreferredSize(new Dimension(270, 310));
                 display.setLineWrap(true);
                 display.setBackground(Color.BLACK);
@@ -433,7 +435,7 @@ public class test extends JFrame{
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
+//
 
                 panelStart.removeAll();
                 panelStart.setVisible(false);
