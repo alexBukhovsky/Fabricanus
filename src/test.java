@@ -81,7 +81,7 @@ public class test extends JFrame{
 
     public static void main(String[] args) {
       createTheme();
-        tmpStorage = new Storage();
+
         view = new test();
 
         //setStartView();
@@ -567,8 +567,8 @@ public class test extends JFrame{
                 submit1.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent arg0) {
-                        if(name.getText() != null && description.getText() != null && prod.getText() != null ) {
-                            locTempS = new Staff(name.getText(),description.getText(),prod.getText(),count.getComponentCount(),price.getComponentCount());
+                        if(name.getText() != null && description.getText() != null && prod.getText() != null && isCount(price.getText()) && isCount(count.getText()) ) {
+                            locTempS = new Staff(name.getText(),description.getText(),prod.getText(),Integer.parseInt(count.getText()),Integer.parseInt(price.getText()));
                             setVisible(false);
                             dispose();
                         }
