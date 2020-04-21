@@ -48,11 +48,11 @@ public class GroupOfStaff {
     }
 
     public String getId(){
-        String allStaffs = "*group*#";
+        String allStaffs = "";
         for(int i = 0; i < staffs.size(); i++) {
-            allStaffs += staffs.get(i).getId() + "\n";
+            allStaffs += staffs.get(i).getId();
         }
-        return "[" + name + "]" + "\n" + allStaffs + "#*group*" ;
+        return name + "<*end*>"+description+"<*endGroup*>" + allStaffs +"<*group*>";
     }
 
 }
