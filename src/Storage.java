@@ -120,7 +120,7 @@ public class Storage {
         return file;
     }
 
-    private String getId(){
+    private static String getId(){
         String allGrops = "<*STORAGE*>\n";
         for(int i = 0; i < groups.size(); i++) {
             allGrops += groups.get(i).getId();
