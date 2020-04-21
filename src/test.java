@@ -146,9 +146,12 @@ public class test extends JFrame{
         addGroups.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                JWindowsDilog dg = new JWindowsDilog("getGroupData",view,true);
+                dg.setVisible(true);
                 GroupOfStaff locTemp = new GroupOfStaff("Huinya","nya");
                 Storage.groups.add(locTemp);
                 modelGroups.addElement(locTemp);
+
                     groupsList.setPreferredSize(new Dimension(420,Storage.groups.size()*26));
                     groupsList.setModel(modelGroups);
 
@@ -474,18 +477,37 @@ public class test extends JFrame{
         private JLabel txt;
 
         private void initInterface(String type) {
-            this.setLayout(new GridLayout(1, 1));
             this.setLocation(500, 200);
-            this.setSize(350, 100);
+            this.setSize(350, 300);
 
             txt = new JLabel();
+            JTextField name = new JTextField("g");
+            JTextArea description = new JTextArea("p");
+            JTextField prod = new JTextField("s");
+            JSpinner count = new JSpinner();
+            JSpinner price = new JSpinner();
+            name.setForeground(Color.BLACK);
 
             if(type.equals("NoFile")){
+
+                this.setLayout(new GridLayout(1, 1));
                 this.setTitle("Error 0");
                 txt.setText("Error 0: No file or file is not storage file ");
+                add(txt);
             }
-            else if(type.equals("NosdfsdfaFile")) {
-                txt.setText("Error 1: Max number that you know can't be less than 2. ");
+            else if(type.equals("getGroupData")) {
+                this.setLayout(new GridLayout(5, 1));
+                this.setTitle("Enter data: ");
+                JLabel txt1 = new JLabel("Name of group: ");
+                txt1.setForeground(Color.BLACK);
+                this.add(txt1);
+                this.add(name);
+                JLabel txt2 = new JLabel("Description: ");
+                txt2.setForeground(Color.BLACK);
+                this.add(txt2);
+                this.add(description);
+                MyJButton submit1 = new MyJButton("ADD GROUP","Dialog");
+                this.add(submit1);
             }
             else if(type.equals("NosdafdsafFile")) {
                 txt.setText("Youre right! ");
@@ -494,7 +516,10 @@ public class test extends JFrame{
                 txt.setText("Youre wrong! ");
             }
 
-            add(txt);
+
+        }
+        public void createNewGroup() {
+
         }
     }
 }
