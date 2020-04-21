@@ -13,12 +13,12 @@ import javax.swing.event.ListSelectionListener;
 
 public class test extends JFrame{
 
-     static File fileStorage;
+    static File fileStorage;
     private static GroupOfStaff locTempG ;
     private static Staff locTempS ;
 
     private static test view;
-
+    private static JTextArea display ;
     private static GroupOfStaff tmpGroup;
     private static Staff tmpStaff;
 
@@ -110,7 +110,7 @@ public class test extends JFrame{
             public void actionPerformed(ActionEvent arg0) {
               String searchedGood = searchField.getText();
                 Staff sr  = Storage.SearchStaffByName(searchedGood);
-                JTextArea display;
+                display = null;
                 if (sr==null){
                      display = new JTextArea("Nothing");
                 }
@@ -400,7 +400,6 @@ public class test extends JFrame{
                 panelStart.removeAll();
                 panelStart.setVisible(false);
                 view.remove(panelStart);
-                tmpGroup = null;
                 setWorkView();
             }
         });
@@ -576,6 +575,36 @@ public class test extends JFrame{
 
             }
 
+            else if(type.equals("editGroup")) {
+                this.setLayout(new GridLayout(5, 1));
+                this.setTitle( " Group editor  ");
+                JLabel txt1 = new JLabel("Name of group: ");
+                txt1.setForeground(Color.BLACK);
+                this.add(txt1);
+                name = new JTextField(tmpGroup.getName());
+                this.add(name);
+                JLabel txt2 = new JLabel("Description: ");
+                txt2.setForeground(Color.BLACK);
+                description = new JTextArea(tmpGroup.getDescription());
+                this.add(txt2);
+                this.add(description);
+                MyJButton submit1 = new MyJButton("EDIT","Dialog");
+                this.add(submit1);
+
+                submit1.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent arg0) {
+                        if(name.getText() != null && description.getText() != null) {
+                            tmpGroup.setDescription(description.getText());
+                            tmpGroup.setName(name.getText());
+                            setVisible(false);
+                            dispose();
+                        }
+                    }
+                });
+
+            }
+
             else if(type.equals("getStaffData")) {
                 this.setLocation(500, 200);
                 this.setSize(350, 630);
@@ -616,6 +645,55 @@ public class test extends JFrame{
                 });
 
             }
+
+            else if(type.equals("editStaff")) {
+                this.setLocation(500, 200);
+                this.setSize(350, 630);
+                this.setLayout(new GridLayout(11, 1));
+                this.setTitle( " Staff editor  ");
+                JLabel txt1 = new JLabel("Name of staff: ");
+                txt1.setForeground(Color.BLACK);
+                name = new JTextField(tmpStaff.getName());
+                this.add(txt1);
+                this.add(name);
+                JLabel txt2 = new JLabel("Description: ");
+                txt2.setForeground(Color.BLACK);
+                description = new JTextArea(tmpStaff.getDescription());
+                this.add(txt2);
+                this.add(description);
+                JLabel txt3 = new JLabel("Producer: ");
+                txt3.setForeground(Color.BLACK);
+                prod = new JTextField(tmpStaff.getProducer());
+                this.add(txt3);
+                this.add(prod);
+                JLabel txt4 = new JLabel("Count: ");
+                txt4.setForeground(Color.BLACK);
+                count = new JTextField(tmpStaff.getCount());
+                this.add(txt4);
+                this.add(count);
+                JLabel txt5 = new JLabel("Price: ");
+                txt5.setForeground(Color.BLACK);
+                price = new JTextField(tmpStaff.getPrice());
+                this.add(txt5);
+                this.add(price);
+                MyJButton submit2 = new MyJButton("EDIT","Dialog");
+                this.add(submit2);
+
+                submit2.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent arg0) {
+                        if(!name.getText().equals("") && !description.getText().equals("") && !prod.getText().equals("") && isCount(price.getText()) && isCount(count.getText())) {
+                            tmpStaff.setName(name.getText());
+                            tmpStaff.setDescription(description.getText());
+                            tmpStaff.setProducer(prod.getText());
+                            tmpStaff.setCount(Integer.parseInt(count.getText()));
+                            tmpStaff.setPrice(Integer.parseInt(price.getText()));
+                        }
+                    }
+                });
+
+            }
+
 
             else if(type.equals("NosdafdsafFile")) {
                 txt.setText("Youre right! ");

@@ -18,6 +18,9 @@ public class GroupOfStaff {
     public String getName(){
         return this.name;
     }
+    public String getDescription(){
+        return this.description;
+    }
 
     private void deleteStaff(String name) {
         for(int i = 0; i < staffs.size(); i++) {

@@ -39,6 +39,16 @@ public class Staff {
         return this.count;
     }
 
+    public void setName(String name){this.name = name;}
+
+    public void setDescription(String description){this.description = description;}
+
+    public void setProducer(String producer){this.producer = producer;}
+
+    public void setCount(int count){this.count = count;}
+
+    public void setPrice(int price){this.price = price;}
+
     public String getInfo(){ return  "Name: " + name + "\n" + "\n" + "Description: " + description + "\n" + "\n"  + "Producer: " + producer + "\n" + "\n" + "Count : " + count + "\n" + "\n" + "Price : " + price + "\n" + "\n" ; }
 
     public String getId(){ return  name + "<*end*>" + description + "<*end*>" + producer + "<*end*>" + count + "<*end*>" + price + "<*endStaff*>"; };
