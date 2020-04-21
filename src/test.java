@@ -13,7 +13,7 @@ import javax.swing.event.ListSelectionListener;
 
 public class test extends JFrame{
 
-    private static File fileStorage;
+     static File fileStorage;
     private static GroupOfStaff locTempG ;
     private static Staff locTempS ;
 
@@ -121,7 +121,7 @@ public class test extends JFrame{
                 scrolDis.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
                 scrolDis.setPreferredSize(new Dimension(270,310));
                 screen.add(scrolDis);
-
+                screen.updateUI();
             }
         });
 
@@ -398,6 +398,7 @@ public class test extends JFrame{
                 panelStart.removeAll();
                 panelStart.setVisible(false);
                 view.remove(panelStart);
+                tmpGroup = null;
                 setWorkView();
             }
         });
@@ -426,14 +427,18 @@ public class test extends JFrame{
         buttonOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                try {
-                    Storage st = new Storage(fileStorage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+             //   if (!fileStorage.getPath().equals("tmp1.txt"))
+                    try {
+                        Storage st = new Storage(fileStorage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
                 panelStart.removeAll();
                 panelStart.setVisible(false);
                 view.remove(panelStart);
+                tmpGroup = null;
                 setWorkView();
             }
 

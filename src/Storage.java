@@ -5,6 +5,7 @@ public class Storage {
     Storage() {
         groups = new ArrayList<>();
         tmp = null;
+        test.fileStorage = new File("tmp2.txt");
     }
     Storage (File file) throws IOException {
         groups = new ArrayList<>();
@@ -119,7 +120,7 @@ public class Storage {
     }
 
     public static File makeSave() throws IOException {
-        File file = new File("tmp.txt");
+        File file = new File("tmp1.txt");
         FileWriter fr = new FileWriter(file);
         fr.append(getId());
         fr.close();
