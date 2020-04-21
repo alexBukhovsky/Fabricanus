@@ -84,7 +84,7 @@ public class test extends JFrame{
 
     public static void main(String[] args) {
       createTheme();
-
+        Storage st = new Storage();
         view = new test();
 
         //setStartView();

@@ -2,7 +2,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Storage {
-
+    Storage() {
+        groups = new ArrayList<>();
+        tmp = null;
+    }
     Storage (File file) throws IOException {
         groups = new ArrayList<>();
         tmp = null;
