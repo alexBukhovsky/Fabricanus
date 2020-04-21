@@ -157,8 +157,14 @@ public class test extends JFrame{
                 JWindowsDilog dg = new JWindowsDilog("getGroupData",view,true);
                 dg.setVisible(true);
 
-                Storage.groups.add(locTempG);
-                modelGroups.addElement(locTempG);
+                if (locTempG != null){
+                    Storage.groups.add(locTempG);
+                    modelGroups.addElement(locTempG);
+                }
+
+                locTempG = null;
+
+
 
                     groupsList.setPreferredSize(new Dimension(420,Storage.groups.size()*26));
                     groupsList.setModel(modelGroups);
@@ -279,21 +285,20 @@ public class test extends JFrame{
             public void actionPerformed(ActionEvent arg0) {
                 JWindowsDilog dg = new JWindowsDilog("getStaffData",view,true);
                 dg.setVisible(true);
-                tmpGroup.staffs.add(new Staff("Huinya", "nya", "drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n  ", 69, 228));
-                try {
-                    modelGoods.addElement(new Staff("Huinya", "nya", "drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n  ", 69, 228));
-                    goodsList.setPreferredSize(new Dimension(420,tmpGroup.staffs.size()*26));
 
-                } catch (NullPointerException e) {
-                    //e.printStackTrace();
+                if (locTempS != null){
+                    tmpGroup.addStaffToGroup(locTempS);
+                    modelGoods.addElement(locTempS);
+                    goodsList.setPreferredSize(new Dimension(420,tmpGroup.staffs.size()*26));
                 }
-                finally {
+
+                locTempS = null;
                     goodsList.setModel(modelGoods);
                     editGood.setEnabled(false);
                     deleteGood.setEnabled(false);
                     countPlus.setEnabled(false);
                     countMinus.setEnabled(false);
-                }
+
             }
         });
         deleteGood.addActionListener(new ActionListener() {
@@ -579,13 +584,13 @@ public class test extends JFrame{
                 txt5.setForeground(Color.BLACK);
                 this.add(txt5);
                 this.add(price);
-                MyJButton submit1 = new MyJButton("ADD GROUP","Dialog");
-                this.add(submit1);
+                MyJButton submit2 = new MyJButton("ADD STAFF","Dialog");
+                this.add(submit2);
 
-                submit1.addActionListener(new ActionListener() {
+                submit2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent arg0) {
-                        if(name.getText() != null && description.getText() != null && prod.getText() != null && isCount(price.getText()) && isCount(count.getText()) ) {
+                        if(name.getText() != null && description.getText() != null && prod.getText() != null && isCount(price.getText()) == true && isCount(count.getText()) == true ) {
                             locTempS = new Staff(name.getText(),description.getText(),prod.getText(),Integer.parseInt(count.getText()),Integer.parseInt(price.getText()));
                             setVisible(false);
                             dispose();
@@ -606,8 +611,11 @@ public class test extends JFrame{
         }
 
         private boolean isCount(String s){
-            for(int i = 0; i<s.length() ; i++){ if(s.charAt(i)<0 || s.charAt(i)>9) return false; }
-            return true;
+            boolean res = true;
+            for(int i = 0; i<s.length() ; i++){
+                if(s.charAt(i)<0 || s.charAt(i)>9) res = false;
+            }
+            return res;
          }
 
     }

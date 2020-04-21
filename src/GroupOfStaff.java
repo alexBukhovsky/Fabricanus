@@ -7,6 +7,8 @@ public class GroupOfStaff {
     ArrayList<Staff> staffs = new ArrayList<>();
     Staff tmp;
 
+
+
     public GroupOfStaff(String name, String description) {
         this.name = name;
         this.description = description;
@@ -33,6 +35,10 @@ public class GroupOfStaff {
 
     public void addStaffToGroup(String name, String description, String producer, int count, int price){
         staffs.add(new Staff(name,description,producer, count, price));
+    }
+
+    public void addStaffToGroup(Staff stafchik){
+        staffs.add(stafchik);
     }
 
     public ArrayList<Staff> getStaffCollection() {
