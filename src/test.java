@@ -468,8 +468,12 @@ public class test extends JFrame{
         }
     }
 
+    public static void showSaveDialog(File file) {
 
-     private static class JWindowsDilog extends JDialog {
+    }
+
+
+    private static class JWindowsDilog extends JDialog {
         public JWindowsDilog(String type, Frame owner, boolean modal) {
             super(owner, modal);
             initInterface(type);

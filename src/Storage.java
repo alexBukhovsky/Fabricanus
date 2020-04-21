@@ -1,13 +1,56 @@
+import java.io.*;
 import java.util.ArrayList;
 
 public class Storage {
 
-    Storage () {
+    Storage (File file) throws IOException {
         groups = new ArrayList<>();
         tmp = null;
+        buildStorage(file);
     }
 
-    static ArrayList<GroupOfStaff> groups = new ArrayList<GroupOfStaff>();
+    private void buildStorage(File file) throws IOException {
+        BufferedReader rd;
+        FileReader fr = new FileReader(file);
+        rd = new BufferedReader(fr);
+        rd.readLine();
+        String str="";
+        String getted ="";
+        do {
+            getted = rd.readLine();
+            if(getted!=null) str = str + getted;
+        } while (getted!=null);
+
+        String[] groups = str.split("<*group*>");
+
+        for(int i = 0; i < groups.length;i++){
+            String[] groupAndListOfStaff = groups[i].split("<*endGroup*>");
+            String[] nameAndDesc = groupAndListOfStaff[0].split("<*end*>");
+            String nameGroup = nameAndDesc[0];
+            String descGroup = nameAndDesc[1];
+            Storage.groups.add(new GroupOfStaff(nameGroup,descGroup));
+
+            String[] staffs = groupAndListOfStaff[1].split("<*endStaff*>");
+            for(int j = 0; j < staffs.length; j++) {
+                String[] chr = staffs[j].split("<*end*>");
+                Storage.groups.get(i).addStaffToGroup(chr[0],chr[1],chr[2],Integer.parseInt(chr[3]),Integer.parseInt(chr[4]));
+            }
+
+            fr.close();
+        }
+
+    }
+    boolean checkIsStorage(File file) throws IOException {
+        BufferedReader rd;
+        FileReader fr = new FileReader(file);
+        rd = new BufferedReader(fr);
+        String check = rd.readLine();
+        fr.close();
+        if(check.equals("<*STORAGE*>")) return true;
+        return false;
+    }
+
+    static ArrayList<GroupOfStaff> groups;
     static GroupOfStaff tmp;
 
     public void addStaff(String name, String description, String producer, int count, int price){
@@ -69,17 +112,31 @@ public class Storage {
         }
     }
 
-    public void makeSave(){
-
+    public void makeSave() throws IOException {
+        File file = new File("tmp.txt");
+        FileWriter fr = new FileWriter(file);
+        fr.append(getId());
+        fr.close();
+        test.showSaveDialog(file);
     }
 
     private String getId(){
-        String allGrops = "";
+        String allGrops = "<*STORAGE*>\n";
         for(int i = 0; i < groups.size(); i++) {
-            allGrops += groups.get(i).getId() + "\n";
+            allGrops += groups.get(i).getId();
         }
         return  allGrops ;
         }
+
+
+
+
+/*
+
+Matcher mA = Pattern.compile(" +").matcher(allRules);
+			String ar = mA.replaceAll("");
+			String[] pidstanovka = ar.split(";");
+ */
 
 
 }
