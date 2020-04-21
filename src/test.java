@@ -87,8 +87,8 @@ public class test extends JFrame{
         Storage st = new Storage();
         view = new test();
 
-        //setStartView();
-        setWorkView();
+        setStartView();
+        //setWorkView();
         view.setVisible(true);
     }
 
@@ -393,6 +393,7 @@ public class test extends JFrame{
         buttonNew.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                Storage st = new Storage();
                 panelStart.removeAll();
                 panelStart.setVisible(false);
                 view.remove(panelStart);
