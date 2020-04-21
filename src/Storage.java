@@ -112,12 +112,12 @@ public class Storage {
         }
     }
 
-    public void makeSave() throws IOException {
+    public static File makeSave() throws IOException {
         File file = new File("tmp.txt");
         FileWriter fr = new FileWriter(file);
         fr.append(getId());
         fr.close();
-        test.showSaveDialog(file);
+        return file;
     }
 
     private String getId(){

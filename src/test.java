@@ -2,6 +2,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -81,7 +84,6 @@ public class test extends JFrame{
 
     public static void main(String[] args) {
       createTheme();
-        tmpStorage = new Storage();
         view = new test();
 
         //setStartView();
@@ -423,7 +425,11 @@ public class test extends JFrame{
                 buttonSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
+                try {
+                    showSaveDialog(Storage.makeSave());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -472,8 +478,17 @@ public class test extends JFrame{
         }
     }
 
-    public static void showSaveDialog(File file) {
+    public static void showSaveDialog(File file) throws IOException {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
 
+        int userSelection = fileChooser.showSaveDialog(view);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileAddress = fileChooser.getSelectedFile();
+            System.out.println("Save as file: " + fileAddress.getAbsolutePath());
+            Files.copy(file.toPath(), fileAddress.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        }
     }
 
 
