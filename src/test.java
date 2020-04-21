@@ -13,12 +13,11 @@ import javax.swing.event.ListSelectionListener;
 
 public class test extends JFrame{
 
+    private static File fileStorage;
     private static GroupOfStaff locTempG ;
     private static Staff locTempS ;
 
     private static test view;
-
-    private static File file = null;
 
     private static GroupOfStaff tmpGroup;
     private static Staff tmpStaff;
@@ -410,9 +409,9 @@ public class test extends JFrame{
                 int returnValue = fileChooser.showOpenDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     try {
-                        file = fileChooser.getSelectedFile();
-                        throw new NotStorageException();
-                    } catch (NotStorageException e) {
+                        fileStorage = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                        if (!Storage.checkIsStorage(fileStorage)) throw new NotStorageException();
+                    } catch (NotStorageException | IOException e) {
                         e.printStackTrace();
                         JWindowsDilog er = new JWindowsDilog("NoFile",view,true);
                         er.setVisible(true);
@@ -425,9 +424,17 @@ public class test extends JFrame{
         buttonOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
-
+                try {
+                    Storage st = new Storage(fileStorage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                panelStart.removeAll();
+                panelStart.setVisible(false);
+                view.remove(panelStart);
+                setWorkView();
             }
+
         });
 
                 buttonSave.addActionListener(new ActionListener() {
@@ -591,7 +598,7 @@ public class test extends JFrame{
                 submit2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent arg0) {
-                        if(name.getText() != null && description.getText() != null && prod.getText() != null && isCount(price.getText()) == true && isCount(count.getText()) == true ) {
+                       if(!name.getText().equals("") && !description.getText().equals("") && !prod.getText().equals("") && isCount(price.getText()) && isCount(count.getText())) {
                             locTempS = new Staff(name.getText(),description.getText(),prod.getText(),Integer.parseInt(count.getText()),Integer.parseInt(price.getText()));
                             setVisible(false);
                             dispose();
@@ -614,7 +621,7 @@ public class test extends JFrame{
         private boolean isCount(String s){
             boolean res = true;
             for(int i = 0; i<s.length() ; i++){
-                if(s.charAt(i)<0 || s.charAt(i)>9) res = false;
+                if(s.charAt(i)<'0' || s.charAt(i)>'9') res = false;
             }
             return res;
          }

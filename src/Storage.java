@@ -23,19 +23,22 @@ public class Storage {
             getted = rd.readLine();
             if(getted!=null) str = str + getted;
         } while (getted!=null);
+        System.out.println(str);
 
-        String[] groups = str.split("<*group*>");
-
+        String[] groups = str.split("<\\*group\\*>");
+        for(String s: groups) {
+            System.out.println(s);
+        }
         for(int i = 0; i < groups.length;i++){
-            String[] groupAndListOfStaff = groups[i].split("<*endGroup*>");
-            String[] nameAndDesc = groupAndListOfStaff[0].split("<*end*>");
+            String[] groupAndListOfStaff = groups[i].split("<\\*endGroup\\*>");
+            String[] nameAndDesc = groupAndListOfStaff[0].split("<\\*end\\*>");
             String nameGroup = nameAndDesc[0];
             String descGroup = nameAndDesc[1];
             Storage.groups.add(new GroupOfStaff(nameGroup,descGroup));
 
-            String[] staffs = groupAndListOfStaff[1].split("<*endStaff*>");
+            String[] staffs = groupAndListOfStaff[1].split("<\\*endStaff\\*>");
             for(int j = 0; j < staffs.length; j++) {
-                String[] chr = staffs[j].split("<*end*>");
+                String[] chr = staffs[j].split("<\\*end\\*>");
                 Storage.groups.get(i).addStaffToGroup(chr[0],chr[1],chr[2],Integer.parseInt(chr[3]),Integer.parseInt(chr[4]));
             }
 
@@ -43,7 +46,7 @@ public class Storage {
         }
 
     }
-    boolean checkIsStorage(File file) throws IOException {
+    static boolean checkIsStorage(File file) throws IOException {
         BufferedReader rd;
         FileReader fr = new FileReader(file);
         rd = new BufferedReader(fr);
