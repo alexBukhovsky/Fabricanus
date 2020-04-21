@@ -68,4 +68,18 @@ public class Storage {
             }
         }
     }
+
+    public void makeSave(){
+
+    }
+
+    private String getId(){
+        String allGrops = "";
+        for(int i = 0; i < groups.size(); i++) {
+            allGrops += groups.get(i).getId() + "\n";
+        }
+        return  allGrops ;
+        }
+
+
 }

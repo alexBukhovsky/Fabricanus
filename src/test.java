@@ -17,6 +17,8 @@ public class test extends JFrame{
     private static GroupOfStaff tmpGroup;
     private static Staff tmpStaff;
 
+    private static Storage tmpStorage;
+
     private static JPanel panelStart;
 
         private static JPanel buttonsStart;
@@ -76,7 +78,7 @@ public class test extends JFrame{
 
     public static void main(String[] args) {
       createTheme();
-
+        tmpStorage = new Storage();
         view = new test();
 
         //setStartView();

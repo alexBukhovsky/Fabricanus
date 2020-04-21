@@ -41,6 +41,8 @@ public class Staff {
 
     public String getInfo(){ return  "Name: " + name + "\n" + "\n" + "Description: " + description + "\n" + "\n"  + "Producer: " + producer + "\n" + "\n" ; }
 
+    public String getId(){ return  name + "_" + description + "_" + producer + "_" + count + "_" + price ; };
+
 }
 
 
