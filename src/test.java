@@ -109,9 +109,11 @@ public class test extends JFrame{
             @Override
             public void actionPerformed(ActionEvent arg0) {
               String searchedGood = searchField.getText();
-              if (searchedGood == null) searchedGood = "Nothing";
-               /*
-               ТУТ тіп должен бутьб пошук НО Я ХУЙ ЗНА КАК РАБОТАТЬ З КЛАСОМ СТОРАГЕ НЕ СТВОРЮЮЧИ ЙОГО ОТАКІ ПИРОГИ =(
+                Staff sr  = Storage.SearchStaffByName(searchedGood);
+                if (sr==null){
+                    JTextArea display = new JTextArea("Nothing");
+                }
+                JTextArea display = new JTextArea(sr.getInfo());
                 display.setPreferredSize(new Dimension(270, 310));
                 display.setLineWrap(true);
                 display.setBackground(Color.BLACK);
@@ -119,7 +121,7 @@ public class test extends JFrame{
                 scrolDis.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
                 scrolDis.setPreferredSize(new Dimension(270,310));
                 screen.add(scrolDis);
-                */
+
             }
         });
 

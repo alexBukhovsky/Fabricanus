@@ -70,7 +70,7 @@ public class Storage {
       if (checkIsGroupUnique(name))groups.add(new GroupOfStaff(name, description));
     }
 
-    private Staff SearchStaffByName(String name) {
+    public static Staff SearchStaffByName(String name) {
         for(int i = 0; i < groups.size(); i++){
             for(int j = 0; j < groups.get(i).getStaffCollection().size(); j++){
                 if (groups.get(i).getStaffCollection().get(j).getName().equals(name))
