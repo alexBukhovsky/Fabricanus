@@ -39,7 +39,7 @@ public class Staff {
         return this.count;
     }
 
-    public String getInfo(){ return  "Name: " + name + "\n" + "\n" + "Description: " + description + "\n" + "\n"  + "Producer: " + producer + "\n" + "\n" ; }
+    public String getInfo(){ return  "Name: " + name + "\n" + "\n" + "Description: " + description + "\n" + "\n"  + "Producer: " + producer + "\n" + "\n" + "Count : " + count + "\n" + "\n" + "Price : " + price + "\n" + "\n" ; }
 
     public String getId(){ return  name + "_" + description + "_" + producer + "_" + count + "_" + price ; };
 

@@ -10,6 +10,9 @@ import javax.swing.event.ListSelectionListener;
 
 public class test extends JFrame{
 
+    private static GroupOfStaff locTempG ;
+    private static Staff locTempS ;
+
     private static test view;
 
     private static File file = null;
@@ -150,9 +153,9 @@ public class test extends JFrame{
             public void actionPerformed(ActionEvent arg0) {
                 JWindowsDilog dg = new JWindowsDilog("getGroupData",view,true);
                 dg.setVisible(true);
-                GroupOfStaff locTemp = new GroupOfStaff("Huinya","nya");
-                Storage.groups.add(locTemp);
-                modelGroups.addElement(locTemp);
+
+                Storage.groups.add(locTempG);
+                modelGroups.addElement(locTempG);
 
                     groupsList.setPreferredSize(new Dimension(420,Storage.groups.size()*26));
                     groupsList.setModel(modelGroups);
@@ -204,7 +207,7 @@ public class test extends JFrame{
                                                      countMinus.setEnabled(false);
                                                      modelGoods = new DefaultListModel();
                                                      try {
-                                                         modelGoods.addAll(tmpGroup.staff);
+                                                         modelGoods.addAll(tmpGroup.staffs);
                                                      }
                                                      catch (NullPointerException e) {
 
@@ -224,7 +227,7 @@ public class test extends JFrame{
         goodsList = new JList<Staff>();
         modelGoods = new DefaultListModel();
         try {
-            goodsList = new JList<Staff>(tmpGroup.staff.toArray(new Staff[tmpGroup.staff.size()]));
+            goodsList = new JList<Staff>(tmpGroup.staffs.toArray(new Staff[tmpGroup.staffs.size()]));
         }
         catch (NullPointerException e) {
             //e.printStackTrace();
@@ -271,11 +274,12 @@ public class test extends JFrame{
         addGood.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
-                tmpGroup.staff.add(new Staff("Huinya", "nya", "drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n  ", 69, 228));
+                JWindowsDilog dg = new JWindowsDilog("getStaffData",view,true);
+                dg.setVisible(true);
+                tmpGroup.staffs.add(new Staff("Huinya", "nya", "drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n  ", 69, 228));
                 try {
                     modelGoods.addElement(new Staff("Huinya", "nya", "drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n drochnya \n  ", 69, 228));
-                    goodsList.setPreferredSize(new Dimension(420,tmpGroup.staff.size()*26));
+                    goodsList.setPreferredSize(new Dimension(420,tmpGroup.staffs.size()*26));
 
                 } catch (NullPointerException e) {
                     //e.printStackTrace();
@@ -293,7 +297,7 @@ public class test extends JFrame{
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
-                tmpGroup.staff.remove(goodsList.getSelectedValue());
+                tmpGroup.staffs.remove(goodsList.getSelectedValue());
                 try {
                     modelGoods.removeElement(goodsList.getSelectedValue());
                     goodsList.setModel(modelGoods);
@@ -473,25 +477,29 @@ public class test extends JFrame{
         public JWindowsDilog(String type, Frame owner, boolean modal) {
             super(owner, modal);
             initInterface(type);
-
+            txt = new JLabel();
+            name.setForeground(Color.BLACK);
+            prod.setForeground(Color.BLACK);
+            description.setForeground(Color.BLACK);
+            count.setForeground(Color.BLACK);
+            price.setForeground(Color.BLACK);
         }
 
         private JLabel txt;
+
+         JTextField name = new JTextField("");
+         JTextArea description = new JTextArea("");
+         JTextField prod = new JTextField("");
+         JTextField count = new JTextField("");
+         JTextField price = new JTextField("");
+
 
         private void initInterface(String type) {
             this.setLocation(500, 200);
             this.setSize(350, 300);
 
-            txt = new JLabel();
-            JTextField name = new JTextField("g");
-            JTextArea description = new JTextArea("p");
-            JTextField prod = new JTextField("s");
-            JSpinner count = new JSpinner();
-            JSpinner price = new JSpinner();
-            name.setForeground(Color.BLACK);
 
             if(type.equals("NoFile")){
-
                 this.setLayout(new GridLayout(1, 1));
                 this.setTitle("Error 0");
                 txt.setText("Error 0: No file or file is not storage file ");
@@ -499,7 +507,7 @@ public class test extends JFrame{
             }
             else if(type.equals("getGroupData")) {
                 this.setLayout(new GridLayout(5, 1));
-                this.setTitle("Enter data: ");
+                this.setTitle( " Group constructor  ");
                 JLabel txt1 = new JLabel("Name of group: ");
                 txt1.setForeground(Color.BLACK);
                 this.add(txt1);
@@ -510,7 +518,61 @@ public class test extends JFrame{
                 this.add(description);
                 MyJButton submit1 = new MyJButton("ADD GROUP","Dialog");
                 this.add(submit1);
+
+                submit1.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent arg0) {
+                      if(name.getText() != null && description.getText() != null) {
+                          locTempG = new GroupOfStaff(name.getText(),description.getText());
+                          setVisible(false);
+                          dispose();
+                      }
+                    }
+                });
+
             }
+
+            else if(type.equals("getStaffData")) {
+                this.setLocation(500, 200);
+                this.setSize(350, 630);
+                this.setLayout(new GridLayout(11, 1));
+                this.setTitle( " Staff constructor  ");
+                JLabel txt1 = new JLabel("Name of staff: ");
+                txt1.setForeground(Color.BLACK);
+                this.add(txt1);
+                this.add(name);
+                JLabel txt2 = new JLabel("Description: ");
+                txt2.setForeground(Color.BLACK);
+                this.add(txt2);
+                this.add(description);
+                JLabel txt3 = new JLabel("Producer: ");
+                txt3.setForeground(Color.BLACK);
+                this.add(txt3);
+                this.add(prod);
+                JLabel txt4 = new JLabel("Count: ");
+                txt4.setForeground(Color.BLACK);
+                this.add(txt4);
+                this.add(count);
+                JLabel txt5 = new JLabel("Price: ");
+                txt5.setForeground(Color.BLACK);
+                this.add(txt5);
+                this.add(price);
+                MyJButton submit1 = new MyJButton("ADD GROUP","Dialog");
+                this.add(submit1);
+
+                submit1.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent arg0) {
+                        if(name.getText() != null && description.getText() != null && prod.getText() != null ) {
+                            locTempS = new Staff(name.getText(),description.getText(),prod.getText(),count.getComponentCount(),price.getComponentCount());
+                            setVisible(false);
+                            dispose();
+                        }
+                    }
+                });
+
+            }
+
             else if(type.equals("NosdafdsafFile")) {
                 txt.setText("Youre right! ");
             }
@@ -520,8 +582,11 @@ public class test extends JFrame{
 
 
         }
-        public void createNewGroup() {
 
-        }
+        private boolean isCount(String s){
+            for(int i = 0; i<s.length() ; i++){ if(s.charAt(i)<0 || s.charAt(i)>9) return false; }
+            return true;
+         }
+
     }
 }
