@@ -415,9 +415,10 @@ public class test extends JFrame{
             toMenu = new JPanel(new FlowLayout(FlowLayout.RIGHT,100,15));
                 goToMenu = new MyJButton("toMENU","toMenu");
                 toMenu.add(goToMenu);
+                MyJButton  info = new MyJButton("Info","toMenu");
+                toMenu.add(info);
+
         panelWork.add(toMenu);
-
-
 
         view.add(panelWork);
 
@@ -428,6 +429,14 @@ public class test extends JFrame{
                 panelWork.setVisible(false);
                 view.remove(panelWork);
                 setStartView();
+            }
+        });
+
+        info.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                JWindowsDilog dg = new JWindowsDilog("info",view,true);
+                dg.setVisible(true);
             }
         });
 
@@ -814,6 +823,14 @@ public class test extends JFrame{
 
             }
 
+            else if(type.equals("info")) {
+                this.setLayout(new GridLayout(1, 1));
+                this.setTitle( "info ");
+                description = new JTextArea(""+ Storage.getInfo());
+                JScrollPane scrol = new JScrollPane(description);
+                scrol.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                this.add(scrol);
+            }
 
             else if(type.equals("NosdafdsafFile")) {
                 txt.setText("Youre right! ");

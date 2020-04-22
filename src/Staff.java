@@ -49,6 +49,8 @@ public class Staff {
 
     public void setPrice(int price){this.price = price;}
 
+    public String getInfoForSt(){ return  "Name: " + name + " " + "Description: " + description + " " + "Producer: " + producer + " " + "Count : " + count + " " + "Price : " + price ; }
+
     public String getInfo(){ return  "Name: " + name + "\n" + "\n" + "Description: " + description + "\n" + "\n"  + "Producer: " + producer + "\n" + "\n" + "Count : " + count + "\n" + "\n" + "Price : " + price + "\n" + "\n" ; }
 
     public String getId(){ return  name + "<*end*>" + description + "<*end*>" + producer + "<*end*>" + count + "<*end*>" + price + "<*endStaff*>"; };

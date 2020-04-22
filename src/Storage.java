@@ -136,6 +136,17 @@ public class Storage {
         }
 
 
+    public static String getInfo(){
+        String res = "";
+        int PRICE = 0;
+
+            for(int i = 0; i < groups.size(); i++) {
+                res += groups.get(i).getInfo();
+                PRICE += groups.get(i).priceAllStaffs();
+            }
+
+        return res +"\n"+"\n" + "Price all staffs on storage:" + PRICE;
+    }
 
 
 /*

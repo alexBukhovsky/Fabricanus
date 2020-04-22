@@ -56,6 +56,25 @@ public class GroupOfStaff {
         this.description = description;
     }
 
+    public int priceAllStaffs(){
+        int res=0;
+        for(int i = 0; i < staffs.size(); i++) {
+            res += staffs.get(i).getPrice()*staffs.get(i).getCount();
+        }
+        return res;
+    }
+
+
+    public String getInfo(){
+        String allStaffs = "";
+        int priceallSt = 0;
+        for(int i = 0; i < staffs.size(); i++) {
+            allStaffs += staffs.get(i).getInfoForSt();
+            priceallSt += staffs.get(i).getPrice()*staffs.get(i).getCount();
+        }
+        return "Group: " + name + " (" +description + ") Price all Staffs: " + priceallSt +"\n" + allStaffs +"\n"+"\n" ;
+    }
+
     public String getId(){
         String allStaffs = "";
         for(int i = 0; i < staffs.size(); i++) {
