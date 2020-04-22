@@ -391,7 +391,8 @@ public class test extends JFrame{
         countMinus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                tmpStaff.setCount(0);
+                JWindowsDilog dg = new JWindowsDilog("countMinus",view,true);
+                dg.setVisible(true);
                 screen.removeAll();
                 display = new JTextArea(tmpStaff.getInfo());
                 display.setPreferredSize(new Dimension(270, 310));
@@ -780,6 +781,31 @@ public class test extends JFrame{
                     public void actionPerformed(ActionEvent arg0) {
                         if(isCount(count.getText())){
                             tmpStaff.setCount(tmpStaff.getCount()+Integer.parseInt(count.getText()));
+                            setVisible(false);
+                            dispose();
+                        }
+                    }
+                });
+
+            }
+
+            else if(type.equals("countMinus")) {
+                this.setLayout(new GridLayout(3, 1));
+                this.setTitle( " Sell count Staff  ");
+                JLabel txt1 = new JLabel("How to sell: ");
+                txt1.setForeground(Color.BLACK);
+                this.add(txt1);
+                this.add(count);
+                MyJButton submit1 = new MyJButton("Add","Dialog");
+                this.add(submit1);
+
+                submit1.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent arg0) {
+                        if(isCount(count.getText())){
+                            int res = tmpStaff.getCount()-Integer.parseInt(count.getText());
+                            if (res<0) res = 0;
+                            tmpStaff.setCount(res);
                             setVisible(false);
                             dispose();
                         }
