@@ -698,12 +698,12 @@ public class test extends JFrame{
                 submit1.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent arg0) {
-                        if(name.getText() != null && description.getText() != null) {
-                            tmpGroup.setDescription(description.getText());
-                            tmpGroup.setName(name.getText());
-                            setVisible(false);
-                            dispose();
-                        }
+                            if (name.getText() != null && description.getText() != null) {
+                                tmpGroup.setDescription(description.getText());
+                                tmpGroup.setName(name.getText());
+                                setVisible(false);
+                                dispose();
+                            }
                     }
                 });
 
