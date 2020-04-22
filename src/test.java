@@ -108,6 +108,7 @@ public class test extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                screen.removeAll();
               String searchedGood = searchField.getText();
                 Staff sr  = Storage.SearchStaffByName(searchedGood);
                 display = null;
@@ -182,6 +183,17 @@ public class test extends JFrame{
 
             }
         });
+
+        editGroups.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                JWindowsDilog dg = new JWindowsDilog("editGroup",view,true);
+                dg.setVisible(true);
+                groupsList.updateUI();
+                screen.updateUI();
+            }
+        });
+
         deleteGroups.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -270,7 +282,7 @@ public class test extends JFrame{
                                                     countMinus.setEnabled(true);
                                                     if(tmpStaff!=null) {
                                                         //Panel with INFO about good
-                                                        JTextArea display = new JTextArea(tmpStaff.getInfo());
+                                                        display = new JTextArea(tmpStaff.getInfo());
                                                         display.setPreferredSize(new Dimension(270, 310));
                                                         display.setLineWrap(true);
                                                         display.setBackground(Color.BLACK);
@@ -283,6 +295,8 @@ public class test extends JFrame{
                                                 }
                                             }
         );
+
+
         addGood.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -304,6 +318,26 @@ public class test extends JFrame{
 
             }
         });
+
+        editGood.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                JWindowsDilog dg = new JWindowsDilog("editStaff",view,true);
+                dg.setVisible(true);
+                goodsList.updateUI();
+                screen.removeAll();
+                display = new JTextArea(tmpStaff.getInfo());
+                display.setPreferredSize(new Dimension(270, 310));
+                display.setLineWrap(true);
+                display.setBackground(Color.BLACK);
+                JScrollPane scrolDis = new JScrollPane(display);
+                scrolDis.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                scrolDis.setPreferredSize(new Dimension(270,310));
+                screen.add(scrolDis);
+                screen.updateUI();
+            }
+        });
+
         deleteGood.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -335,6 +369,41 @@ public class test extends JFrame{
                 rightSection.add(countPlus);
                     countMinus = new MyJButton("TAKE OFF THIS STAFF","takeOffStaff");
                 rightSection.add(countMinus);
+
+        countPlus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                JWindowsDilog dg = new JWindowsDilog("countPlus",view,true);
+                dg.setVisible(true);
+                screen.removeAll();
+                display = new JTextArea(tmpStaff.getInfo());
+                display.setPreferredSize(new Dimension(270, 310));
+                display.setLineWrap(true);
+                display.setBackground(Color.BLACK);
+                JScrollPane scrolDis = new JScrollPane(display);
+                scrolDis.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                scrolDis.setPreferredSize(new Dimension(270,310));
+                screen.add(scrolDis);
+                screen.updateUI();
+            }
+        });
+
+        countMinus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                tmpStaff.setCount(0);
+                screen.removeAll();
+                display = new JTextArea(tmpStaff.getInfo());
+                display.setPreferredSize(new Dimension(270, 310));
+                display.setLineWrap(true);
+                display.setBackground(Color.BLACK);
+                JScrollPane scrolDis = new JScrollPane(display);
+                scrolDis.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                scrolDis.setPreferredSize(new Dimension(270,310));
+                screen.add(scrolDis);
+                screen.updateUI();
+            }
+        });
 
 
             workSection.add(panelGroups);
@@ -668,12 +737,12 @@ public class test extends JFrame{
                 this.add(prod);
                 JLabel txt4 = new JLabel("Count: ");
                 txt4.setForeground(Color.BLACK);
-                count = new JTextField(tmpStaff.getCount());
+                count = new JTextField(""+tmpStaff.getCount());
                 this.add(txt4);
                 this.add(count);
                 JLabel txt5 = new JLabel("Price: ");
                 txt5.setForeground(Color.BLACK);
-                price = new JTextField(tmpStaff.getPrice());
+                price = new JTextField(""+tmpStaff.getPrice());
                 this.add(txt5);
                 this.add(price);
                 MyJButton submit2 = new MyJButton("EDIT","Dialog");
@@ -688,6 +757,31 @@ public class test extends JFrame{
                             tmpStaff.setProducer(prod.getText());
                             tmpStaff.setCount(Integer.parseInt(count.getText()));
                             tmpStaff.setPrice(Integer.parseInt(price.getText()));
+                            setVisible(false);
+                            dispose();
+                        }
+                    }
+                });
+
+            }
+
+            else if(type.equals("countPlus")) {
+                this.setLayout(new GridLayout(3, 1));
+                this.setTitle( " Add count Staff  ");
+                JLabel txt1 = new JLabel("How to add: ");
+                txt1.setForeground(Color.BLACK);
+                this.add(txt1);
+                this.add(count);
+                MyJButton submit1 = new MyJButton("Add","Dialog");
+                this.add(submit1);
+
+                submit1.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent arg0) {
+                        if(isCount(count.getText())){
+                            tmpStaff.setCount(tmpStaff.getCount()+Integer.parseInt(count.getText()));
+                            setVisible(false);
+                            dispose();
                         }
                     }
                 });
