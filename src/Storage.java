@@ -93,7 +93,7 @@ public class Storage {
         else tmp.setDescription(description);
     }
 
-    private boolean checkIsStaffUnique(String name) {
+     static boolean checkIsStaffUnique(String name) {
         for(int i = 0; i < groups.size(); i++){
             for(int j = 0; j < groups.get(i).getStaffCollection().size(); j++){
                 if (groups.get(i).getStaffCollection().get(j).getName().equals(name))
@@ -103,7 +103,7 @@ public class Storage {
         return true;
     }
 
-    private boolean checkIsGroupUnique(String name) {
+    static boolean checkIsGroupUnique(String name) {
     for (int i = 0; i < groups.size(); i++){
         if (groups.get(i).getName().equals(name))return false;
     }

@@ -162,8 +162,15 @@ public class test extends JFrame{
                 dg.setVisible(true);
 
                 if (locTempG != null){
-                    Storage.groups.add(locTempG);
-                    modelGroups.addElement(locTempG);
+                    if (Storage.checkIsGroupUnique(locTempG.getName())) {
+                        Storage.groups.add(locTempG);
+                        modelGroups.addElement(locTempG);
+                    }
+                    else  {
+                        JWindowsDilog er1 = new JWindowsDilog("groupIsNotUq",view,true);
+                        er1.setVisible(true);
+
+                    }
                 }
 
                 locTempG = null;
@@ -304,9 +311,15 @@ public class test extends JFrame{
                 dg.setVisible(true);
 
                 if (locTempS != null){
-                    tmpGroup.addStaffToGroup(locTempS);
-                    modelGoods.addElement(locTempS);
-                    goodsList.setPreferredSize(new Dimension(420,tmpGroup.staffs.size()*26));
+                    if (Storage.checkIsStaffUnique(locTempS.getName())) {
+                        tmpGroup.addStaffToGroup(locTempS);
+                        modelGoods.addElement(locTempS);
+                        goodsList.setPreferredSize(new Dimension(420, tmpGroup.staffs.size() * 26));
+                    }
+                    else {
+                        JWindowsDilog er1 = new JWindowsDilog("staffIsNotUq",view,true);
+                        er1.setVisible(true);
+                    }
                 }
 
                 locTempS = null;
@@ -507,7 +520,7 @@ public class test extends JFrame{
         buttonOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-             //   if (!fileStorage.getPath().equals("tmp1.txt"))
+             //   if (!fileStorage.getPath().equals("tmp1.txt")) //warning govnokod here
                     try {
                         Storage st = new Storage(fileStorage);
                     } catch (IOException e) {
@@ -625,6 +638,18 @@ public class test extends JFrame{
                 this.setLayout(new GridLayout(1, 1));
                 this.setTitle("Error 0");
                 txt.setText("Error 0: No file or file is not storage file ");
+                add(txt);
+            }
+            else if(type.equals("groupIsNotUq")) {
+                this.setLayout(new GridLayout(1, 1));
+                this.setTitle("Error 1");
+                txt.setText("Error 1: Group is not unique");
+                add(txt);
+            }
+            else if(type.equals("staffIsNotUq")) {
+                this.setLayout(new GridLayout(1, 1));
+                this.setTitle("Error 2");
+                txt.setText("Error 2: Staff is not unique");
                 add(txt);
             }
             else if(type.equals("getGroupData")) {
